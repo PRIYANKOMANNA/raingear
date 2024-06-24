@@ -1,15 +1,31 @@
+/* General styles */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 header {
     background-color: #333;
     color: #fff;
-    padding: 1rem;
-    text-align: center;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+    display: inline-block;
 }
 
 header h1 a {
@@ -17,75 +33,143 @@ header h1 a {
     text-decoration: none;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
+header nav {
+    display: inline-block;
+    vertical-align: middle;
 }
 
-nav ul li a {
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+header nav ul li {
+    position: relative;
+    margin-right: 20px;
+}
+
+header nav ul li a {
     color: #fff;
     text-decoration: none;
 }
 
-.hero {
-    position: relative;
-    overflow: hidden;
-    color: #fff;
-    text-align: center;
-    padding: 5rem 1rem;
-}
-
-.carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-item {
-    min-width: 100%;
-    transition: opacity 1s ease-in-out;
+header nav ul li .dropdown {
+    display: none;
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 0;
+    background-color: #444;
+    padding: 10px 0;
+    z-index: 1000;
 }
 
-.carousel-item img {
-    width: 100%;
-}
-
-.carousel-item.active {
-    position: relative;
-    opacity: 1;
-}
-
-.carousel-content {
-    position: absolute;
-    bottom: 20%;
-    left: 10%;
-    text-align: left;
-}
-
-.carousel-content h2 {
-    font-size: 2rem;
+header nav ul li .dropdown li {
+    display: block;
     margin: 0;
 }
 
+header nav ul li .dropdown li a {
+    padding: 10px 20px;
+    display: block;
+    color: #fff;
+}
+
+header nav ul li:hover .dropdown {
+    display: block;
+}
+
+.view-cart {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.view-cart i {
+    margin-right: 10px;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.carousel {
+    position: relative;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    text-align: center;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+    display: block;
+    opacity: 1;
+}
+
+.carousel img {
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.carousel-content h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
 .carousel-content p {
-    margin: 0.5rem 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.carousel-content .price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.carousel-content button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background-color: #ff5722;
+    color: #fff;
+    cursor: pointer;
 }
 
 .carousel-control {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     color: #fff;
     border: none;
-    font-size: 2rem;
     cursor: pointer;
-    padding: 0.5rem 1rem;
+    padding: 10px;
+    font-size: 18px;
 }
 
 .carousel-control.prev {
@@ -97,53 +181,23 @@ nav ul li a {
 }
 
 .products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 2rem;
+    padding: 20px 0;
+    background-color: #fff;
 }
 
 .product {
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    text-align: center;
-    max-width: 200px;
+    display: inline-block;
+    width: calc(25% - 20px);
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
 }
 
 .product img {
     max-width: 100%;
+    height: auto;
 }
 
-.price {
-    font-size: 1.2rem;
-    color: #b12704;
-}
-
-.price del {
-    color: #555;
-}
-
-button {
-    display: block;
-    margin: 1rem auto;
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
+.product h3 {
+    font-size: 18px;
+    margin: 10px

@@ -1,33 +1,37 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-item');
+// JavaScript for carousel control
+let slideIndex = 0;
 
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        }
-    });
+function showSlides() {
+    let slides = document.querySelectorAll('.carousel-item');
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+    slides[slideIndex - 1].style.display = 'block';
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
+}
+
+showSlides(); // Initial call to start carousel
+
+function prevSlide() {
+    slideIndex--;
+    showSlides();
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    slideIndex++;
+    showSlides();
 }
 
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
+// Function to add items to cart
+function addToCart(productName) {
+    // Replace with actual cart handling logic (e.g., update UI, store in localStorage, etc.)
+    alert(`${productName} added to cart!`);
 }
 
-function addToCart(product) {
-    alert(`${product} has been added to your cart!`);
+// Function to show more info about a product
+function moreInfo(productName) {
+    // Replace with modal or detailed view logic (e.g., show modal dialog with product details)
+    alert(`More info about ${productName}`);
 }
-
-function moreInfo(product) {
-    alert(`More information about ${product}`);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showSlide(currentSlide);
-});
