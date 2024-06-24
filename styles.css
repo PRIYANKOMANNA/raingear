@@ -20,11 +20,9 @@ header h1 a {
 nav ul {
     list-style-type: none;
     padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 nav ul li a {
@@ -33,7 +31,8 @@ nav ul li a {
 }
 
 .hero {
-    background: url('assets/images/slider/slider1.png') no-repeat center center/cover;
+    position: relative;
+    overflow: hidden;
     color: #fff;
     text-align: center;
     padding: 5rem 1rem;
@@ -41,16 +40,60 @@ nav ul li a {
 
 .carousel {
     display: flex;
-    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-item {
     min-width: 100%;
-    transition: transform 0.5s ease-in-out;
+    transition: opacity 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-item img {
+    width: 100%;
 }
 
 .carousel-item.active {
-    transform: translateX(0);
+    position: relative;
+    opacity: 1;
+}
+
+.carousel-content {
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    text-align: left;
+}
+
+.carousel-content h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.carousel-content p {
+    margin: 0.5rem 0;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
 }
 
 .products {
