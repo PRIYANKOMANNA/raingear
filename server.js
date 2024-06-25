@@ -1,45 +1,37 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const path = require('path');
 const db = require('./database');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static('public'));
+// Middleware to serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Get all products
+// API endpoint to get all products
 app.get('/api/products', (req, res) => {
-    db.all('SELECT * FROM products', (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json({ products: rows });
-    });
+  db.all('SELECT * FROM products', [], (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ products: rows });
+  });
 });
 
-// Get a single product by ID
+// API endpoint to get a single product by id
 app.get('/api/products/:id', (req, res) => {
-    const { id } = req.params;
-    db.get('SELECT * FROM products WHERE id = ?', [id], (err, row) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-        res.json({ product: row });
-    });
+  const id = req.params.id;
+  db.get('SELECT * FROM products WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ product: row });
+  });
 });
 
-// Add a product to the cart (basic implementation)
-app.post('/api/cart', (req, res) => {
-    const { productId, quantity } = req.body;
-    // For simplicity, this example does not implement a full cart system.
-    res.json({ message: `Added product ${productId} with quantity ${quantity} to the cart.` });
-});
-
+// Start the server
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });

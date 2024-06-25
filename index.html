@@ -4,13 +4,11 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Raingear - Shop</title>
-	<meta name="description" content="Shop the latest arrivals at Raingear. From electronics to home decor, find everything you need at unbeatable prices.">
-	<meta name="keywords" content="Raingear, online shop, electronics, home decor, new arrivals, best prices">
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-	<h1><a href="#">Raingear</a></h1>
+	<h1>Raingear</h1>
 	<nav>
 		<ul>
 			<li><a href="#home">Home</a></li>
@@ -24,67 +22,36 @@
 </header>
 <main>
 	<section id="home" class="hero">
-		<div class="carousel">
-			<div class="carousel-item active">
-				<img src="assets/images/slider/slider1.png" alt="Lucky Bamboo Collection">
-				<div class="carousel-content">
-					<h2>Lucky Bamboo Collection</h2>
-					<p>Home Decoration item || Peace || Showpiece</p>
-					<p class="price">₹399.00 <del>₹499.00</del></p>
-					<button class="btn-cart" onclick="addToCart('Lucky Bamboo')">Add to Cart</button>
-					<button class="btn-more-info" onclick="moreInfo('Lucky Bamboo')">More Info</button>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<img src="assets/images/slider/slider2.png" alt="Portable Laptop Table">
-				<div class="carousel-content">
-					<h2>Portable Laptop Table</h2>
-					<p>Best Quality and Cheapest Price || Student Table || Laptop Table</p>
-					<p class="price">₹299.00 <del>₹499.00</del></p>
-					<button class="btn-cart" onclick="addToCart('Portable Laptop Table')">Add to Cart</button>
-					<button class="btn-more-info" onclick="moreInfo('Portable Laptop Table')">More Info</button>
-				</div>
-			</div>
-		</div>
-		<button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
-		<button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+		<!-- Hero section content -->
 	</section>
 	<section id="new-arrivals" class="products">
 		<h2>New Arrivals</h2>
-		<article class="product">
+		<div class="product">
 			<img src="assets/images/populer-products/p1.png" alt="Black Umbrella">
-			<h3><a href="#">Black Umbrella</a></h3>
+			<h3>Black Umbrella</h3>
 			<p class="price">₹199.00 <del>₹299.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Black Umbrella')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Black Umbrella')">More Info</button>
-		</article>
-		<article class="product">
+			<button class="btn-cart" onclick="addToCart(1, 'Black Umbrella', 199.00)">Add to Cart</button>
+		</div>
+		<div class="product">
 			<img src="assets/images/populer-products/p2.png" alt="Leather Wallet">
-			<h3><a href="#">Leather Wallet</a></h3>
+			<h3>Leather Wallet</h3>
 			<p class="price">₹299.00 <del>₹499.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Leather Wallet')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Leather Wallet')">More Info</button>
-		</article>
-		<article class="product">
-			<img src="assets/images/populer-products/p3.png" alt="Bluetooth Speaker">
-			<h3><a href="#">Bluetooth Speaker</a></h3>
-			<p class="price">₹999.00 <del>₹1,299.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Bluetooth Speaker')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Bluetooth Speaker')">More Info</button>
-		</article>
-		<article class="product">
-			<img src="assets/images/populer-products/p4.png" alt="Wireless Earbuds">
-			<h3><a href="#">Wireless Earbuds</a></h3>
-			<p class="price">₹1,499.00 <del>₹1,999.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Wireless Earbuds')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Wireless Earbuds')">More Info</button>
-		</article>
+			<button class="btn-cart" onclick="addToCart(2, 'Leather Wallet', 299.00)">Add to Cart</button>
+		</div>
 		<!-- Add more products as needed -->
 	</section>
 </main>
 <footer>
 	<p>&copy; 2024 Raingear. All rights reserved.</p>
 </footer>
+<div id="cart-modal" class="cart-modal">
+	<div class="cart-content">
+		<span class="close-btn" onclick="closeCart()">&times;</span>
+		<h2>Cart Details</h2>
+		<ul id="cart-items"></ul>
+		<p id="cart-total"></p>
+	</div>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
