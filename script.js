@@ -1,22 +1,27 @@
-function fetchProducts() {
-    fetch('http://127.0.0.1:5000/products')
-        .then(response => response.json())
-        .then(data => {
-            const productsContainer = document.querySelector('.products');
-            data.forEach(product => {
-                const productElement = document.createElement('div');
-                productElement.classList.add('product');
-                productElement.innerHTML = `
-                    <img src="${product.image_url}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">₹${product.price}</p>
-                    <button class="btn-cart" onclick="addToCart('${product.name}')">Add to Cart</button>
-                    <button class="btn-more-info" onclick="moreInfo('${product.name}')">More Info</button>
-                `;
-                productsContainer.appendChild(productElement);
-            });
-        })
-        .catch(error => console.error('Error fetching products:', error));
+let currentSlide = 0;
+
+function nextSlide() {
+    const slides = document.querySelectorAll('.carousel-item');
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
 }
 
-document.addEventListener('DOMContentLoaded', fetchProducts);
+function prevSlide() {
+    const slides = document.querySelectorAll('.carousel-item');
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+}
+
+function addToCart(product) {
+    alert(`${product} added to cart!`);
+}
+
+function moreInfo(product) {
+    alert(`More information about ${product}`);
+}
+
+function viewCart() {
+    alert('Viewing cart!');
+}
