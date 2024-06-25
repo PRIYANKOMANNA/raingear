@@ -25,3 +25,44 @@ function moreInfo(product) {
 function viewCart() {
     alert('Viewing cart!');
 }
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('/api/products')
+        .then(response => response.json())
+        .then(data => {
+            const productsSection = document.querySelector('.products');
+            data.products.forEach(product => {
+                const productElement = document.createElement('article');
+                productElement.classList.add('product');
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3><a href="#">${product.name}</a></h3>
+                    <p class="price">₹${product.price.toFixed(2)}</p>
+                    <button class="btn-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                    <button class="btn-more-info" onclick="moreInfo(${product.id})">More Info</button>
+                `;
+                productsSection.appendChild(productElement);
+            });
+        });
+});
+
+function addToCart(productId) {
+    fetch('/api/cart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ productId, quantity: 1 })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+
+function moreInfo(productId) {
+    fetch(`/api/products/${productId}`)
+        .then(response => response.json())
+        .then(data => {
+            alert(`More information about ${data.product.name}: ${data.product.description}`);
+        });
+}
