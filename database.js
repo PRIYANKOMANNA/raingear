@@ -16,7 +16,4 @@ db.serialize(() => {
   stmt.run("Leather Wallet", 299.00, "assets/images/populer-products/p2.png");
   stmt.run("Bluetooth Speaker", 999.00, "assets/images/populer-products/p3.png");
   stmt.run("Wireless Earbuds", 1499.00, "assets/images/populer-products/p4.png");
-  stmt.finalize();
-});
-
-module.exports = db;
+  stmt.finalize
