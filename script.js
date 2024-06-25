@@ -1,5 +1,3 @@
-let cart = [];
-
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.view-cart').addEventListener('click', viewCart);
 
@@ -8,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.json())
         .then(data => {
             const productsSection = document.querySelector('.products');
+            productsSection.innerHTML = ''; // Clear any existing products
             data.products.forEach(product => {
                 const productElement = document.createElement('div');
                 productElement.classList.add('product');
@@ -19,8 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
                 productsSection.appendChild(productElement);
             });
+        })
+        .catch(error => {
+            console.error('Error fetching products:', error);
         });
 });
+
+let cart = [];
 
 function addToCart(id, name, price) {
     const product = { id, name, price };
