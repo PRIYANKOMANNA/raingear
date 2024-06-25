@@ -4,47 +4,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Raingear - Shop</title>
+	<meta name="description" content="Shop the latest arrivals at Raingear. From electronics to home decor, find everything you need at unbeatable prices.">
+	<meta name="keywords" content="Raingear, online shop, electronics, home decor, new arrivals, best prices">
 	<link rel="stylesheet" href="styles.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <header>
-	<div class="container">
-		<h1><a href="https://cscdigitalindia.in">CSC DIGITAL INDIA</a></h1>
-		<nav>
-			<ul id="menu">
-				<li><a href="#home">Home</a></li>
-				<li><a href="#new-arrivals">New Arrivals</a></li>
-				<li><a href="#features">Features</a>
-					<ul class="dropdown">
-						<li><a href="#feature1">Feature 1</a></li>
-						<li><a href="#feature2">Feature 2</a></li>
-						<li><a href="#feature3">Feature 3</a></li>
-					</ul>
-				</li>
-				<li><a href="#blog">Blog</a></li>
-				<li><a href="#contact">Contact</a></li>
-			</ul>
-		</nav>
-		<button class="view-cart" onclick="viewCart()">
-			<i class="fas fa-shopping-basket"></i> View Cart
-		</button>
-		<button class="hamburger" onclick="toggleMenu()">
-			<i class="fas fa-bars"></i>
-		</button>
-	</div>
+	<h1><a href="https://cscdigitalindia.in" aria-label="CSC DIGITAL INDIA homepage">CSC DIGITAL INDIA</a></h1>
+	<nav>
+		<ul>
+			<li><a href="#home" aria-label="Home">Home</a></li>
+			<li><a href="#new-arrivals" aria-label="New Arrivals">New Arrivals</a></li>
+			<li><a href="#features" aria-label="Features">Features</a></li>
+			<li><a href="#blog" aria-label="Blog">Blog</a></li>
+			<li><a href="#contact" aria-label="Contact">Contact</a></li>
+		</ul>
+	</nav>
+	<button class="view-cart" onclick="viewCart()" aria-label="View Cart">View Cart</button>
 </header>
 <main>
 	<section id="home" class="hero">
 		<div class="carousel">
 			<div class="carousel-item active">
-				<img src="assets/images/slider/slider1.png" alt="Lucky Bamboo">
+				<img src="assets/images/slider/slider1.png" alt="Lucky Bamboo Collection">
 				<div class="carousel-content">
 					<h2>Lucky Bamboo Collection</h2>
 					<p>Home Decoration item || Peace || Showpiece</p>
 					<p class="price">₹399.00 <del>₹499.00</del></p>
-					<button class="btn-cart" onclick="addToCart('Lucky Bamboo')">Add to Cart</button>
-					<button class="btn-more-info" onclick="moreInfo('Lucky Bamboo')">More Info</button>
+					<button class="btn-cart" onclick="addToCart('Lucky Bamboo')" aria-label="Add Lucky Bamboo to Cart">Add to Cart</button>
+					<button class="btn-more-info" onclick="moreInfo('Lucky Bamboo')" aria-label="More Info about Lucky Bamboo">More Info</button>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -53,31 +41,89 @@
 					<h2>Portable Laptop Table</h2>
 					<p>Best Quality and Cheapest Price || Student Table || Laptop Table</p>
 					<p class="price">₹299.00 <del>₹499.00</del></p>
-					<button class="btn-cart" onclick="addToCart('Portable Laptop Table')">Add to Cart</button>
-					<button class="btn-more-info" onclick="moreInfo('Portable Laptop Table')">More Info</button>
+					<button class="btn-cart" onclick="addToCart('Portable Laptop Table')" aria-label="Add Portable Laptop Table to Cart">Add to Cart</button>
+					<button class="btn-more-info" onclick="moreInfo('Portable Laptop Table')" aria-label="More Info about Portable Laptop Table">More Info</button>
 				</div>
 			</div>
+			<!-- Add more carousel items as needed -->
 		</div>
-		<button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
-		<button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
+		<button class="carousel-control prev" onclick="prevSlide()" aria-label="Previous Slide">&#10094;</button>
+		<button class="carousel-control next" onclick="nextSlide()" aria-label="Next Slide">&#10095;</button>
 	</section>
 	<section id="new-arrivals" class="products">
 		<h2>New Arrivals</h2>
-		<div class="product">
+		<article class="product">
 			<img src="assets/images/populer-products/p1.png" alt="Black Umbrella">
-			<h3><a href="https://www.amazon.in/...">Black Umbrella</a></h3>
+			<h3><a href="https://www.amazon.in/..." aria-label="Black Umbrella on Amazon">Black Umbrella</a></h3>
 			<p class="price">₹199.00 <del>₹299.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Black Umbrella')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Black Umbrella')">More Info</button>
-		</div>
-		<div class="product">
+			<button class="btn-cart" onclick="addToCart('Black Umbrella')" aria-label="Add Black Umbrella to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Black Umbrella')" aria-label="More Info about Black Umbrella">More Info</button>
+		</article>
+		<article class="product">
 			<img src="assets/images/populer-products/p2.png" alt="Leather Wallet">
-			<h3><a href="https://www.amazon.in/...">Leather Wallet</a></h3>
+			<h3><a href="https://www.amazon.in/..." aria-label="Leather Wallet on Amazon">Leather Wallet</a></h3>
 			<p class="price">₹299.00 <del>₹499.00</del></p>
-			<button class="btn-cart" onclick="addToCart('Leather Wallet')">Add to Cart</button>
-			<button class="btn-more-info" onclick="moreInfo('Leather Wallet')">More Info</button>
-		</div>
-		<!-- Additional products go here -->
+			<button class="btn-cart" onclick="addToCart('Leather Wallet')" aria-label="Add Leather Wallet to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Leather Wallet')" aria-label="More Info about Leather Wallet">More Info</button>
+		</article>
+		<!-- Added new products -->
+		<article class="product">
+			<img src="assets/images/populer-products/p3.png" alt="Bluetooth Speaker">
+			<h3><a href="https://www.amazon.in/..." aria-label="Bluetooth Speaker on Amazon">Bluetooth Speaker</a></h3>
+			<p class="price">₹999.00 <del>₹1,299.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Bluetooth Speaker')" aria-label="Add Bluetooth Speaker to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Bluetooth Speaker')" aria-label="More Info about Bluetooth Speaker">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p4.png" alt="Wireless Earbuds">
+			<h3><a href="https://www.amazon.in/..." aria-label="Wireless Earbuds on Amazon">Wireless Earbuds</a></h3>
+			<p class="price">₹1,499.00 <del>₹1,999.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Wireless Earbuds')" aria-label="Add Wireless Earbuds to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Wireless Earbuds')" aria-label="More Info about Wireless Earbuds">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p5.png" alt="Fitness Tracker">
+			<h3><a href="https://www.amazon.in/..." aria-label="Fitness Tracker on Amazon">Fitness Tracker</a></h3>
+			<p class="price">₹1,999.00 <del>₹2,499.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Fitness Tracker')" aria-label="Add Fitness Tracker to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Fitness Tracker')" aria-label="More Info about Fitness Tracker">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p6.png" alt="Smart Watch">
+			<h3><a href="https://www.amazon.in/..." aria-label="Smart Watch on Amazon">Smart Watch</a></h3>
+			<p class="price">₹3,499.00 <del>₹3,999.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Smart Watch')" aria-label="Add Smart Watch to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Smart Watch')" aria-label="More Info about Smart Watch">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p7.png" alt="Portable Charger">
+			<h3><a href="https://www.amazon.in/..." aria-label="Portable Charger on Amazon">Portable Charger</a></h3>
+			<p class="price">₹699.00 <del>₹999.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Portable Charger')" aria-label="Add Portable Charger to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Portable Charger')" aria-label="More Info about Portable Charger">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p8.png" alt="Digital Camera">
+			<h3><a href="https://www.amazon.in/..." aria-label="Digital Camera on Amazon">Digital Camera</a></h3>
+			<p class="price">₹5,999.00 <del>₹6,999.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Digital Camera')" aria-label="Add Digital Camera to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Digital Camera')" aria-label="More Info about Digital Camera">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p9.png" alt="VR Headset">
+			<h3><a href="https://www.amazon.in/..." aria-label="VR Headset on Amazon">VR Headset</a></h3>
+			<p class="price">₹2,999.00 <del>₹3,499.00</del></p>
+			<button class="btn-cart" onclick="addToCart('VR Headset')" aria-label="Add VR Headset to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('VR Headset')" aria-label="More Info about VR Headset">More Info</button>
+		</article>
+		<article class="product">
+			<img src="assets/images/populer-products/p10.png" alt="Gaming Mouse">
+			<h3><a href="https://www.amazon.in/..." aria-label="Gaming Mouse on Amazon">Gaming Mouse</a></h3>
+			<p class="price">₹1,299.00 <del>₹1,599.00</del></p>
+			<button class="btn-cart" onclick="addToCart('Gaming Mouse')" aria-label="Add Gaming Mouse to Cart">Add to Cart</button>
+			<button class="btn-more-info" onclick="moreInfo('Gaming Mouse')" aria-label="More Info about Gaming Mouse">More Info</button>
+		</article>
+		<!-- End of new products -->
 	</section>
 </main>
 <footer>
