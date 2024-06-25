@@ -40,3 +40,28 @@ function updateCart() {
         cartItems.appendChild(itemDiv);
     });
 }
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    cart.forEach(item => {
+        const div = document.createElement('div');
+        div.innerHTML = `${item.name} - $${item.price}`;
+        cartItems.appendChild(div);
+    });
+}
+
+function toggleCart() {
+    document.getElementById('cart-content').classList.toggle('show');
+}
+
+function checkout() {
+    // Implement payment gateway integration here
+    alert('Checkout not implemented yet');
+}
