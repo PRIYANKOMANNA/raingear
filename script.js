@@ -1,37 +1,22 @@
-// JavaScript for carousel control
-let slideIndex = 0;
-
-function showSlides() {
-    let slides = document.querySelectorAll('.carousel-item');
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = 'none';
-    }
-    slideIndex++;
-    if (slideIndex > slides.length) { slideIndex = 1 }
-    slides[slideIndex - 1].style.display = 'block';
-    setTimeout(showSlides, 3000); // Change image every 3 seconds
+function fetchProducts() {
+    fetch('http://127.0.0.1:5000/products')
+        .then(response => response.json())
+        .then(data => {
+            const productsContainer = document.querySelector('.products');
+            data.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.classList.add('product');
+                productElement.innerHTML = `
+                    <img src="${product.image_url}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p class="price">₹${product.price}</p>
+                    <button class="btn-cart" onclick="addToCart('${product.name}')">Add to Cart</button>
+                    <button class="btn-more-info" onclick="moreInfo('${product.name}')">More Info</button>
+                `;
+                productsContainer.appendChild(productElement);
+            });
+        })
+        .catch(error => console.error('Error fetching products:', error));
 }
 
-showSlides(); // Initial call to start carousel
-
-function prevSlide() {
-    slideIndex--;
-    showSlides();
-}
-
-function nextSlide() {
-    slideIndex++;
-    showSlides();
-}
-
-// Function to add items to cart
-function addToCart(productName) {
-    // Replace with actual cart handling logic (e.g., update UI, store in localStorage, etc.)
-    alert(`${productName} added to cart!`);
-}
-
-// Function to show more info about a product
-function moreInfo(productName) {
-    // Replace with modal or detailed view logic (e.g., show modal dialog with product details)
-    alert(`More info about ${productName}`);
-}
+document.addEventListener('DOMContentLoaded', fetchProducts);
