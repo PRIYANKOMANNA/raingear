@@ -22,10 +22,10 @@ function moreInfo(product) {
     alert(`More information about ${product}`);
 }
 
-function viewCart() {
-    alert('Viewing cart!');
-}
+let cart = [];
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Fetch products and display them
     fetch('/api/products')
         .then(response => response.json())
         .then(data => {
@@ -37,83 +37,71 @@ document.addEventListener('DOMContentLoaded', () => {
                     <img src="${product.image}" alt="${product.name}">
                     <h3><a href="#">${product.name}</a></h3>
                     <p class="price">₹${product.price.toFixed(2)}</p>
-                    <button class="btn-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                    <button class="btn-cart" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">Add to Cart</button>
                     <button class="btn-more-info" onclick="moreInfo(${product.id})">More Info</button>
                 `;
                 productsSection.appendChild(productElement);
             });
         });
+
+    // Attach event listener to the "View Cart" button
+    document.querySelector('.view-cart').addEventListener('click', viewCart);
 });
 
-function addToCart(productId) {
-    fetch('/api/cart', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ productId, quantity: 1 })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message);
-    });
+function addToCart(id, name, price) {
+    const product = { id, name, price, quantity: 1 };
+    const existingProduct = cart.find(item => item.id === id);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push(product);
+    }
+
+    alert(`${name} has been added to your cart.`);
 }
 
-function moreInfo(productId) {
-    fetch(`/api/products/${productId}`)
+function moreInfo(id) {
+    fetch(`/api/products/${id}`)
         .then(response => response.json())
         .then(data => {
             alert(`More information about ${data.product.name}: ${data.product.description}`);
         });
 }
-/* Add the following styles */
 
-.cart-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
+function viewCart() {
+    let cartHTML = '<h2>Cart Details</h2><ul>';
+    let total = 0;
+
+    if (cart.length === 0) {
+        cartHTML += '<li>Your cart is empty.</li>';
+    } else {
+        cart.forEach(item => {
+            cartHTML += `
+                <li>
+                    ${item.name} - ₹${item.price.toFixed(2)} x ${item.quantity}
+                    = ₹${(item.price * item.quantity).toFixed(2)}
+                </li>`;
+            total += item.price * item.quantity;
+        });
+    }
+
+    cartHTML += `</ul><p>Total: ₹${total.toFixed(2)}</p>`;
+
+    const cartModal = document.createElement('div');
+    cartModal.classList.add('cart-modal');
+    cartModal.innerHTML = `
+        <div class="cart-content">
+            ${cartHTML}
+            <button onclick="closeCart()">Close</button>
+        </div>
+    `;
+    document.body.appendChild(cartModal);
 }
 
-.cart-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: left;
-    max-width: 500px;
-    width: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.cart-content h2 {
-    margin-top: 0;
-}
-
-.cart-content ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.cart-content ul li {
-    margin: 10px 0;
-}
-
-.cart-content button {
-    background-color: #ff9900;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.cart-content button:hover {
-    background-color: #e68a00;
+function closeCart() {
+    const cartModal = document.querySelector('.cart-modal');
+    if (cartModal) {
+        document.body.removeChild(cartModal);
+    }
 }
