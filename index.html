@@ -26,7 +26,14 @@
 	</section>
 	<section id="new-arrivals" class="products">
 		<h2>New Arrivals</h2>
-		<div id="product-list"></div>
+		<div id="product-list">
+			<div class="product">
+				<h3>Product Name</h3>
+				<p>Product Description</p>
+				<p>Price: $<span class="price">10.00</span></p>
+				<button onclick="addToCart('Product Name', 10.00)">Add to Cart</button>
+			</div>
+		</div>
 	</section>
 </main>
 <footer>
@@ -36,6 +43,7 @@
 	<span class="close-btn" onclick="toggleCart()">×</span>
 	<h2>Cart Details</h2>
 	<div id="cart-items"></div>
+	<button onclick="checkout()">Checkout</button>
 </div>
 <script src="script.js"></script>
 </body>
