@@ -9,19 +9,30 @@
 </head>
 <body>
 <header>
-    <h1><a href="https://cscdigitalindia.in">CSC DIGITAL INDIA</a></h1>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#new-arrivals">New Arrivals</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <button class="view-cart" onclick="viewCart()">
-        <i class="fas fa-shopping-basket"></i> View Cart
-    </button>
+    <div class="container">
+        <h1><a href="https://cscdigitalindia.in">CSC DIGITAL INDIA</a></h1>
+        <nav>
+            <ul id="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#new-arrivals">New Arrivals</a></li>
+                <li><a href="#features">Features</a>
+                    <ul class="dropdown">
+                        <li><a href="#feature1">Feature 1</a></li>
+                        <li><a href="#feature2">Feature 2</a></li>
+                        <li><a href="#feature3">Feature 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="view-cart" onclick="viewCart()">
+            <i class="fas fa-shopping-basket"></i> View Cart
+        </button>
+        <button class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 </header>
 <main>
     <section id="home" class="hero">
@@ -46,15 +57,12 @@
                     <button class="btn-more-info" onclick="moreInfo('Portable Laptop Table')">More Info</button>
                 </div>
             </div>
-            <!-- Add more carousel items as needed -->
         </div>
         <button class="carousel-control prev" onclick="prevSlide()">&#10094;</button>
         <button class="carousel-control next" onclick="nextSlide()">&#10095;</button>
     </section>
     <section id="new-arrivals" class="products">
         <h2>New Arrivals</h2>
-        <!-- Add product details here -->
-        <!-- For example, for each product: -->
         <div class="product">
             <img src="assets/images/populer-products/p1.png" alt="Black Umbrella">
             <h3><a href="https://www.amazon.in/...">Black Umbrella</a></h3>
@@ -62,12 +70,19 @@
             <button class="btn-cart" onclick="addToCart('Black Umbrella')">Add to Cart</button>
             <button class="btn-more-info" onclick="moreInfo('Black Umbrella')">More Info</button>
         </div>
-        <!-- Repeat for more products -->
+        <div class="product">
+            <img src="assets/images/populer-products/p2.png" alt="Leather Wallet">
+            <h3><a href="https://www.amazon.in/...">Leather Wallet</a></h3>
+            <p class="price">₹299.00 <del>₹499.00</del></p>
+            <button class="btn-cart" onclick="addToCart('Leather Wallet')">Add to Cart</button>
+            <button class="btn-more-info" onclick="moreInfo('Leather Wallet')">More Info</button>
+        </div>
+        <!-- Additional products go here -->
     </section>
 </main>
 <footer>
     <p>&copy; 2024 Raingear. All rights reserved.</p>
 </footer>
-<script src="scripts.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
