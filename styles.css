@@ -117,3 +117,27 @@ footer {
     background: #333;
     color: white;
 }
+
+.cart-container {
+    padding: 2rem;
+    background: #f9f9f9;
+}
+
+.cart-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-container th, .cart-container td {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.cart-container th {
+    background: #eee;
+}
+
+.cart-container input[type="number"] {
+    width: 50px;
+}

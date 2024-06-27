@@ -43,7 +43,7 @@
                     <h2>Lucky Bamboo Collection</h2>
                     <p>Home Decoration item || Peace || Showpiece</p>
                     <p class="price">₹399.00 <del>₹499.00</del></p>
-                    <button class="btn-cart" onclick="addToCart('Lucky Bamboo')">Add to Cart</button>
+                    <button class="btn-cart" onclick="addToCart('Lucky Bamboo', 399)">Add to Cart</button>
                     <button class="btn-more-info" onclick="moreInfo('Lucky Bamboo')">More Info</button>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <h2>Portable Laptop Table</h2>
                     <p>Best Quality and Cheapest Price || Student Table || Laptop Table</p>
                     <p class="price">₹299.00 <del>₹499.00</del></p>
-                    <button class="btn-cart" onclick="addToCart('Portable Laptop Table')">Add to Cart</button>
+                    <button class="btn-cart" onclick="addToCart('Portable Laptop Table', 299)">Add to Cart</button>
                     <button class="btn-more-info" onclick="moreInfo('Portable Laptop Table')">More Info</button>
                 </div>
             </div>
@@ -67,19 +67,20 @@
             <img src="assets/images/populer-products/p1.png" alt="Black Umbrella">
             <h3><a href="https://www.amazon.in/...">Black Umbrella</a></h3>
             <p class="price">₹199.00 <del>₹299.00</del></p>
-            <button class="btn-cart" onclick="addToCart('Black Umbrella')">Add to Cart</button>
+            <button class="btn-cart" onclick="addToCart('Black Umbrella', 199)">Add to Cart</button>
             <button class="btn-more-info" onclick="moreInfo('Black Umbrella')">More Info</button>
         </div>
         <div class="product">
             <img src="assets/images/populer-products/p2.png" alt="Leather Wallet">
             <h3><a href="https://www.amazon.in/...">Leather Wallet</a></h3>
             <p class="price">₹299.00 <del>₹499.00</del></p>
-            <button class="btn-cart" onclick="addToCart('Leather Wallet')">Add to Cart</button>
+            <button class="btn-cart" onclick="addToCart('Leather Wallet', 299)">Add to Cart</button>
             <button class="btn-more-info" onclick="moreInfo('Leather Wallet')">More Info</button>
         </div>
         <!-- Additional products go here -->
     </section>
 </main>
+<div id="cart-container" class="cart-container"></div>
 <footer>
     <p>&copy; 2024 Raingear. All rights reserved.</p>
 </footer>
