@@ -1,44 +1,3 @@
-// script.js
-
-function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.classList.toggle('active');
-}
-
-function viewCart() {
-    alert('Viewing cart...');
-}
-
-function addToCart(item) {
-    alert(`${item} added to cart.`);
-}
-
-function moreInfo(item) {
-    alert(`More information about ${item}.`);
-}
-
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-item');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.style.transform = `translateX(${(i - index) * 100}%)`;
-    });
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showSlide(currentSlide);
-});
 // Initialize an empty cart
 let cart = [];
 
@@ -61,7 +20,22 @@ function viewCart() {
     }
 }
 
-// Example usage
-addToCart('Apple');
-addToCart('Banana');
-viewCart();
+// Function to toggle the menu (for mobile view)
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+}
+
+// Example function to handle more info button click (optional)
+function moreInfo(itemName) {
+    alert('More information about ' + itemName + ' will be shown here.');
+}
+
+// Carousel control functions (optional for your slider)
+function nextSlide() {
+    // Logic to show the next slide
+}
+
+function prevSlide() {
+    // Logic to show the previous slide
+}
