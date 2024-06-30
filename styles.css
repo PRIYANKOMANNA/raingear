@@ -1,83 +1,45 @@
-/* styles.css */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-header {
-    background: #333;
-    color: white;
-    padding: 1rem 0;
-}
-
-header h1 a {
-    color: white;
-    text-decoration: none;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-.view-cart, .hamburger {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.hero {
+/* Carousel styles */
+.carousel {
     position: relative;
-    max-width: 100%;
     overflow: hidden;
 }
 
-.carousel {
-    display: flex;
+.carousel-item {
+    display: none;
+    position: absolute;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
 }
 
-.carousel-item {
-    min-width: 100%;
-    transition: transform 0.5s ease;
+.carousel-item img {
+    width: 100%;
+}
+
+.carousel-item.active {
+    display: block;
+    position: relative;
 }
 
 .carousel-content {
     position: absolute;
-    bottom: 20%;
-    left: 10%;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
     color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 1rem;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .carousel-control {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    font-size: 2rem;
+    padding: 10px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .carousel-control.prev {
@@ -86,58 +48,4 @@ nav ul li a {
 
 .carousel-control.next {
     right: 10px;
-}
-
-.products {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-.product {
-    border: 1px solid #ccc;
-    padding: 1rem;
-    text-align: center;
-}
-
-.product img {
-    max-width: 100%;
-    height: auto;
-}
-
-.product h3 a {
-    color: #333;
-    text-decoration: none;
-}
-
-footer {
-    text-align: center;
-    padding: 1rem;
-    background: #333;
-    color: white;
-}
-
-.cart-container {
-    padding: 2rem;
-    background: #f9f9f9;
-}
-
-.cart-container table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.cart-container th, .cart-container td {
-    padding: 1rem;
-    border: 1px solid #ccc;
-    text-align: center;
-}
-
-.cart-container th {
-    background: #eee;
-}
-
-.cart-container input[type="number"] {
-    width: 50px;
 }
