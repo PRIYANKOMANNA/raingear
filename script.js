@@ -1,50 +1,6 @@
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-item');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        }
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-}
-
-document.querySelector('.next').addEventListener('click', nextSlide);
-document.querySelector('.prev').addEventListener('click', prevSlide);
-
-// Optional: Auto-slide every 5 seconds
-setInterval(nextSlide, 5000);
-
-// Lazy loading images
-document.addEventListener('DOMContentLoaded', function() {
-    const lazyImages = document.querySelectorAll('.carousel-item img');
-
-    const lazyLoad = function() {
-        lazyImages.forEach(img => {
-            if (img.offsetTop < window.innerHeight + window.pageYOffset) {
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-            }
-        });
-    };
-
-    lazyLoad();
-
-    document.addEventListener('scroll', lazyLoad);
-});
-// Define a global variable for cart items
+// Global variables for cart items and current slide index
 let cartItems = [];
+let currentSlide = 0;
 
 // Function to add item to cart
 function addToCart(itemName, price) {
@@ -53,68 +9,54 @@ function addToCart(itemName, price) {
         price: price
     };
     cartItems.push(item);
-    updateCart();
+    console.log('Item added to cart:', item);
 }
 
-// Function to update cart display
+// Function to update and show cart contents
 function updateCart() {
-    const cartContainer = document.getElementById('cart-container');
-    cartContainer.innerHTML = '';
+    const cartContainer = $('#cart-container');
+    cartContainer.empty(); // Clear previous cart items
 
     cartItems.forEach(item => {
-        const cartItemElement = document.createElement('div');
-        cartItemElement.classList.add('cart-item');
-        cartItemElement.innerHTML = `
+        const cartItemElement = $('<div class="cart-item"></div>');
+        cartItemElement.html(`
             <p>${item.name} - ₹${item.price}</p>
-        `;
-        cartContainer.appendChild(cartItemElement);
+        `);
+        cartContainer.append(cartItemElement);
     });
-}
 
-// Function to view cart when button is clicked
-function viewCart() {
-    updateCart();
-    // Add code here to show a modal or overlay with cart contents
+    // Show modal or overlay with cart contents
     // Example: $('#cartModal').modal('show');
-    // Replace with your preferred modal library or custom implementation
+    // Replace with your modal library or custom implementation
 }
 
-// Initialize cart functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Add any additional initialization if needed
-});
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-item');
-
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        if (i === index) {
-            slide.classList.add('active');
-        }
-    });
+// Function to handle view cart button click
+function viewCart() {
+    updateCart(); // Update cart contents
 }
 
+// Function to show next slide in the carousel
 function nextSlide() {
+    const slides = $('.carousel-item');
+    $(slides[currentSlide]).removeClass('active');
     currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
+    $(slides[currentSlide]).addClass('active');
 }
 
+// Function to show previous slide in the carousel
 function prevSlide() {
+    const slides = $('.carousel-item');
+    $(slides[currentSlide]).removeClass('active');
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
+    $(slides[currentSlide]).addClass('active');
 }
 
-document.querySelector('.next').addEventListener('click', nextSlide);
-document.querySelector('.prev').addEventListener('click', prevSlide);
+// Function to handle payment when clicking "Buy Now" button
+$('#paymentModal button.btn-primary').on('click', function() {
+    // Perform payment processing logic here
+    alert('Payment processed successfully!');
+    $('#paymentModal').modal('hide'); // Close payment modal after processing
+});
 
 // Optional: Auto-slide every 5 seconds
 setInterval(nextSlide, 5000);
-// Function to handle payment when clicking "View Cart" button
-function viewCart() {
-    updateCart(); // Update cart contents
-    // Simulate opening a payment modal or redirect to a payment page
-    // Example using Bootstrap modal:
-    // $('#paymentModal').modal('show');
-    // Replace with your modal library or custom implementation
-}
