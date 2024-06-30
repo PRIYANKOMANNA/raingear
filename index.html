@@ -19,6 +19,30 @@
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+        <!-- Place this div where you want to display the cart contents -->
+        <div id="cart-container" class="cart-container"></div>
+        <!-- Example payment modal -->
+        <div id="paymentModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="paymentModalLabel">Payment Method</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add payment form or instructions here -->
+                        <p>Please proceed with your payment.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button class="view-cart" onclick="viewCart()">
             <i class="fas fa-shopping-basket"></i> View Cart
         </button>
