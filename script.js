@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Carousel Functionality
+document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.carousel-item');
     const totalSlides = slides.length;
@@ -31,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const product = { name: productName, price: productPrice };
         cart.push(product);
         updateCart();
+        alert(`${productName} has been added to your cart!`);
     }
 
     function updateCart() {
@@ -69,6 +69,14 @@ document.addEventListener("DOMContentLoaded", function() {
         alert(`More information about ${productName}`);
     }
 
+    function proceedToPayment() {
+        if (cart.length > 0) {
+            alert('Proceeding to payment...');
+        } else {
+            alert('Your cart is empty.');
+        }
+    }
+
     document.querySelectorAll('.btn-cart').forEach(button => {
         button.addEventListener('click', function() {
             const name = this.getAttribute('data-name');
@@ -79,10 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.querySelector('.view-cart').addEventListener('click', viewCart);
 
+    document.querySelector('.btn-close-cart').addEventListener('click', closeCart);
+
     document.querySelectorAll('.btn-more-info').forEach(button => {
         button.addEventListener('click', function() {
             const name = this.getAttribute('data-name');
             moreInfo(name);
         });
     });
+
+    document.querySelector('.btn-payment').addEventListener('click', proceedToPayment);
 });
