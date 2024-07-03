@@ -1,5 +1,3 @@
-// script.js
-
 // Carousel Functionality
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-item');
@@ -66,4 +64,5 @@ function toggleMenu() {
 }
 
 function moreInfo(productName) {
-    alert(`More information about ${productName
+    alert(`More information about ${productName}`);
+}
