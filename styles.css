@@ -1,16 +1,8 @@
-/* Reset CSS */
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Body and General Layout */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    padding-top: 60px; /* Adjust based on header height */
 }
 
 .container {
@@ -22,221 +14,136 @@ body {
 header {
     background-color: #333;
     color: #fff;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
-    font-size: 24px;
-    margin: 15px 0;
+header h1 a {
+    color: #fff;
+    text-decoration: none;
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
 }
 
 nav ul li {
-    display: inline-block;
     margin-right: 20px;
 }
 
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #f0f0f0;
-}
-
-.view-cart,
-.hamburger {
-    background-color: transparent;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    margin-left: 20px;
-    transition: all 0.3s ease;
-}
-
-.view-cart:hover,
-.hamburger:hover {
-    color: #f0f0f0;
-}
-
-main {
-    margin-top: 80px; /* Adjust based on header and padding */
 }
 
 .hero {
-    background-color: #fff;
-    padding: 40px;
-    text-align: center;
+    position: relative;
 }
 
 .carousel {
     position: relative;
+    width: 100%;
     overflow: hidden;
-    margin-top: 20px;
 }
 
 .carousel-item {
     display: none;
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease;
 }
 
 .carousel-item.active {
     display: block;
+    position: relative;
 }
 
-.carousel img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
+.carousel-item img {
+    width: 100%;
 }
 
 .carousel-content {
-    margin-top: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
 }
 
-.carousel-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }
 
-.carousel-content p {
-    font-size: 16px;
-    margin-bottom: 10px;
+.carousel-control.prev {
+    left: 10px;
 }
 
-.carousel-content .price {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.carousel-content button {
-    margin-right: 10px;
+.carousel-control.next {
+    right: 10px;
 }
 
 .products {
-    background-color: #f9f9f9;
-    padding: 40px;
-}
-
-.products h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+    padding: 20px 0;
 }
 
 .product {
     display: inline-block;
-    width: calc(50% - 20px);
-    margin-bottom: 20px;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 10px;
+    text-align: center;
 }
 
 .product img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    width: 100%;
 }
 
-.product h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
+.price {
+    color: red;
 }
 
-.product p.price {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 10px;
+.btn-cart, .btn-more-info {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
-.product button {
-    margin-top: 10px;
-}
-
-.cart-container {
-    position: fixed;
-    top: 60px; /* Adjust based on header height */
-    right: 0;
-    width: 300px;
-    background-color: #fff;
-    border-left: 1px solid #ccc;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    overflow-y: auto;
-    max-height: calc(100vh - 80px); /* Adjust based on header and footer */
-}
-
-.cart-item {
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 10px;
+.btn-cart:hover, .btn-more-info:hover {
+    background-color: #555;
 }
 
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 20px 0;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
+    padding: 10px 0;
 }
 
-/* Modal Styles */
-.modal-content {
+.cart-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
     background-color: #fff;
-    border: none;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.modal-header {
-    background-color: #333;
-    color: #fff;
-    border-bottom: none;
-}
-
-.modal-footer {
-    background-color: #f0f0f0;
-    border-top: none;
-}
-
-.modal-footer button {
-    margin-right: 10px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    header {
-        padding: 10px;
-    }
-
-    .container {
-        padding: 0 10px;
-    }
-
-    .carousel-content h2 {
-        font-size: 20px;
-    }
-
-    .products .product {
-        width: 100%;
-    }
-
-    .cart-container {
-        width: 100%;
-        max-width: 100%;
-    }
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    overflow-y: auto;
 }

@@ -1,62 +1,68 @@
-// Global variables for cart items and current slide index
-let cartItems = [];
+// script.js
+
+// Carousel Functionality
 let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-item');
+const totalSlides = slides.length;
 
-// Function to add item to cart
-function addToCart(itemName, price) {
-    const item = {
-        name: itemName,
-        price: price
-    };
-    cartItems.push(item);
-    console.log('Item added to cart:', item);
-}
-
-// Function to update and show cart contents
-function updateCart() {
-    const cartContainer = $('#cart-container');
-    cartContainer.empty(); // Clear previous cart items
-
-    cartItems.forEach(item => {
-        const cartItemElement = $('<div class="cart-item"></div>');
-        cartItemElement.html(`
-            <p>${item.name} - ₹${item.price}</p>
-        `);
-        cartContainer.append(cartItemElement);
+function showSlide(slideIndex) {
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        if (index === slideIndex) {
+            slide.classList.add('active');
+        }
     });
-
-    // Show modal or overlay with cart contents
-    // Example: $('#cartModal').modal('show');
-    // Replace with your modal library or custom implementation
 }
 
-// Function to handle view cart button click
-function viewCart() {
-    updateCart(); // Update cart contents
-}
-
-// Function to show next slide in the carousel
 function nextSlide() {
-    const slides = $('.carousel-item');
-    $(slides[currentSlide]).removeClass('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    $(slides[currentSlide]).addClass('active');
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
 }
 
-// Function to show previous slide in the carousel
 function prevSlide() {
-    const slides = $('.carousel-item');
-    $(slides[currentSlide]).removeClass('active');
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    $(slides[currentSlide]).addClass('active');
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
 }
 
-// Function to handle payment when clicking "Buy Now" button
-$('#paymentModal button.btn-primary').on('click', function() {
-    // Perform payment processing logic here
-    alert('Payment processed successfully!');
-    $('#paymentModal').modal('hide'); // Close payment modal after processing
-});
+document.querySelector('.next').addEventListener('click', nextSlide);
+document.querySelector('.prev').addEventListener('click', prevSlide);
 
-// Optional: Auto-slide every 5 seconds
-setInterval(nextSlide, 5000);
+// Cart Functionality
+let cart = [];
+
+function addToCart(productName, productPrice) {
+    const product = { name: productName, price: productPrice };
+    cart.push(product);
+    updateCart();
+}
+
+function updateCart() {
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.innerHTML = `<h2>Your Cart</h2>`;
+    cart.forEach((item, index) => {
+        cartContainer.innerHTML += `<div class="cart-item">
+            <p>${item.name}</p>
+            <p>₹${item.price}</p>
+            <button onclick="removeFromCart(${index})">Remove</button>
+        </div>`;
+    });
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function viewCart() {
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.style.display = 'block';
+}
+
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('open');
+}
+
+function moreInfo(productName) {
+    alert(`More information about ${productName}`);
+}
