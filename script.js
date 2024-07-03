@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Open the iframe with Google Form
             const iframeContainer = document.createElement('div');
             iframeContainer.innerHTML = `
-                <div id="iframe-overlay" class="iframe-overlay">
+                <div class="iframe-overlay">
                     <div class="iframe-container">
                         <button class="btn-close-iframe" onclick="closeIframe()">Close</button>
                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function closeIframe() {
-        const iframeOverlay = document.getElementById('iframe-overlay');
+        const iframeOverlay = document.querySelector('.iframe-overlay');
         iframeOverlay.remove();
     }
 
