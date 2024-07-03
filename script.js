@@ -79,10 +79,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function proceedToPayment() {
         if (cart.length > 0) {
-            alert('Proceeding to payment...');
+            // Open the iframe with Google Form
+            const iframeContainer = document.createElement('div');
+            iframeContainer.innerHTML = `
+                <div id="iframe-overlay" class="iframe-overlay">
+                    <div class="iframe-container">
+                        <button class="btn-close-iframe" onclick="closeIframe()">Close</button>
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
+                                width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
+                        </iframe>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(iframeContainer);
+
+            // Optionally, you can also close the cart view if it's open
+            closeCart();
         } else {
             alert('Your cart is empty.');
         }
+    }
+
+    function closeIframe() {
+        const iframeOverlay = document.getElementById('iframe-overlay');
+        iframeOverlay.remove();
     }
 
     document.querySelectorAll('.btn-cart').forEach(button => {
@@ -106,40 +126,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.btn-payment').addEventListener('click', proceedToPayment);
 });
-// Function to proceed to payment and show Google Form in iframe
-function proceedToPayment() {
-    if (cart.length > 0) {
-        // Open the iframe with Google Form
-        const iframeContainer = document.createElement('div');
-        iframeContainer.innerHTML = `
-            <div id="iframe-overlay" class="iframe-overlay">
-                <div class="iframe-container">
-                    <button class="btn-close-iframe" onclick="closeIframe()">Close</button>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
-                            width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
-                    </iframe>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(iframeContainer);
-
-        // Optionally, you can also close the cart view if it's open
-        closeCart();
-    } else {
-        alert('Your cart is empty.');
-    }
-}
-
-function closeIframe() {
-    const iframeOverlay = document.getElementById('iframe-overlay');
-    iframeOverlay.remove();
-}
-
-// Function to finalize order after filling Google Form
-function completeOrder() {
-    // You can add additional logic here as needed, e.g., clearing cart, confirming order, etc.
-    alert('Order completed! Thank you for your purchase.');
-}
-
-// Event listener for "Complete Order" button
-document.getElementById('complete-order-button').addEventListener('click', completeOrder);
