@@ -106,3 +106,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.btn-payment').addEventListener('click', proceedToPayment);
 });
+// Function to proceed to payment and show Google Form in iframe
+function proceedToPayment() {
+    if (cart.length > 0) {
+        // Show Google Form in iframe
+        const iframeContainer = document.getElementById('iframe-container');
+        iframeContainer.innerHTML = `
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true" width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        `;
+
+        // Show "Complete Order" button
+        const completeOrderButton = document.getElementById('complete-order-button');
+        completeOrderButton.style.display = 'block';
+    } else {
+        alert('Your cart is empty.');
+    }
+}
+
+// Function to finalize order after filling Google Form
+function completeOrder() {
+    // You can add additional logic here as needed, e.g., clearing cart, confirming order, etc.
+    alert('Order completed! Thank you for your purchase.');
+}
+
+// Event listener for "Complete Order" button
+document.getElementById('complete-order-button').addEventListener('click', completeOrder);
