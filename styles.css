@@ -147,3 +147,25 @@ footer {
     padding: 20px;
     overflow-y: auto;
 }
+
+.cart-container h2 {
+    margin-top: 0;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-item p {
+    margin: 0;
+}
+
+.cart-item button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}

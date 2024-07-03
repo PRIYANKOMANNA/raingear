@@ -5,12 +5,9 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-item');
 const totalSlides = slides.length;
 
-function showSlide(slideIndex) {
-    slides.forEach((slide, index) => {
-        slide.classList.remove('active');
-        if (index === slideIndex) {
-            slide.classList.add('active');
-        }
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
     });
 }
 
@@ -37,10 +34,10 @@ function addToCart(productName, productPrice) {
 }
 
 function updateCart() {
-    const cartContainer = document.getElementById('cart-container');
-    cartContainer.innerHTML = `<h2>Your Cart</h2>`;
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
     cart.forEach((item, index) => {
-        cartContainer.innerHTML += `<div class="cart-item">
+        cartItems.innerHTML += `<div class="cart-item">
             <p>${item.name}</p>
             <p>₹${item.price}</p>
             <button onclick="removeFromCart(${index})">Remove</button>
@@ -58,11 +55,15 @@ function viewCart() {
     cartContainer.style.display = 'block';
 }
 
+function closeCart() {
+    const cartContainer = document.getElementById('cart-container');
+    cartContainer.style.display = 'none';
+}
+
 function toggleMenu() {
     const menu = document.getElementById('menu');
     menu.classList.toggle('open');
 }
 
 function moreInfo(productName) {
-    alert(`More information about ${productName}`);
-}
+    alert(`More information about ${productName
