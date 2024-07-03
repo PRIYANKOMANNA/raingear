@@ -109,18 +109,30 @@ document.addEventListener('DOMContentLoaded', () => {
 // Function to proceed to payment and show Google Form in iframe
 function proceedToPayment() {
     if (cart.length > 0) {
-        // Show Google Form in iframe
-        const iframeContainer = document.getElementById('iframe-container');
+        // Open the iframe with Google Form
+        const iframeContainer = document.createElement('div');
         iframeContainer.innerHTML = `
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true" width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            <div id="iframe-overlay" class="iframe-overlay">
+                <div class="iframe-container">
+                    <button class="btn-close-iframe" onclick="closeIframe()">Close</button>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
+                            width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
+                    </iframe>
+                </div>
+            </div>
         `;
+        document.body.appendChild(iframeContainer);
 
-        // Show "Complete Order" button
-        const completeOrderButton = document.getElementById('complete-order-button');
-        completeOrderButton.style.display = 'block';
+        // Optionally, you can also close the cart view if it's open
+        closeCart();
     } else {
         alert('Your cart is empty.');
     }
+}
+
+function closeIframe() {
+    const iframeOverlay = document.getElementById('iframe-overlay');
+    iframeOverlay.remove();
 }
 
 // Function to finalize order after filling Google Form
