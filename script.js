@@ -40,8 +40,16 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItems.innerHTML += `<div class="cart-item">
                 <p>${item.name}</p>
                 <p>₹${item.price}</p>
-                <button onclick="removeFromCart(${index})">Remove</button>
+                <button class="btn-remove" data-index="${index}">Remove</button>
             </div>`;
+        });
+
+        // Add event listeners to dynamically created remove buttons
+        document.querySelectorAll('.btn-remove').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                removeFromCart(index);
+            });
         });
     }
 
