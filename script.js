@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             iframeContainer.innerHTML = `
                 <div class="iframe-container">
                     <button class="btn-close-iframe">Close</button>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
+                    <iframe id="payment-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
                             width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
                     </iframe>
                 </div>
@@ -97,6 +97,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add event listener to close button
             document.querySelector('.btn-close-iframe').addEventListener('click', closeIframe);
+
+            // Check for form submission
+            const paymentIframe = document.getElementById('payment-iframe');
+            paymentIframe.addEventListener('load', function () {
+                const iframeDoc = paymentIframe.contentDocument || paymentIframe.contentWindow.document;
+                const observer = new MutationObserver(() => {
+                    if (iframeDoc.body.innerText.includes('Your response has been recorded.')) {
+                        closeIframe();
+                        observer.disconnect();
+                        showConfirmationModal();
+                    }
+                });
+                observer.observe(iframeDoc.body, { childList: true, subtree: true });
+            });
         } else {
             alert('Your cart is empty.');
         }
@@ -105,6 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeIframe() {
         const iframeOverlay = document.querySelector('.iframe-overlay');
         iframeOverlay.remove();
+    }
+
+    function showConfirmationModal() {
+        const modal = document.getElementById('confirmation-modal');
+        modal.style.display = 'block';
+
+        const closeModalButton = modal.querySelector('.close-modal');
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
     }
 
     document.querySelectorAll('.btn-cart').forEach(button => {
