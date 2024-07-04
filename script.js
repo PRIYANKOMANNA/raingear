@@ -81,20 +81,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cart.length > 0) {
             // Open the iframe with Google Form
             const iframeContainer = document.createElement('div');
+            iframeContainer.className = 'iframe-overlay';
             iframeContainer.innerHTML = `
-                <div class="iframe-overlay">
-                    <div class="iframe-container">
-                        <button class="btn-close-iframe" onclick="closeIframe()">Close</button>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
-                                width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
-                        </iframe>
-                    </div>
+                <div class="iframe-container">
+                    <button class="btn-close-iframe">Close</button>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"
+                            width="640" height="721" frameborder="0" marginheight="0" marginwidth="0">Loading…
+                    </iframe>
                 </div>
             `;
             document.body.appendChild(iframeContainer);
 
             // Optionally, you can also close the cart view if it's open
             closeCart();
+
+            // Add event listener to close button
+            document.querySelector('.btn-close-iframe').addEventListener('click', closeIframe);
         } else {
             alert('Your cart is empty.');
         }
