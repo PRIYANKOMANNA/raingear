@@ -6,11 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmationModal = document.getElementById('confirmation-modal');
     const signInModal = document.getElementById('sign-in-modal');
     const signInButton = document.getElementById('sign-in-button');
+    const registerButton = document.getElementById('register-button');
     const signInBtn = document.querySelector('.sign-in');
     const signOutBtn = document.querySelector('.sign-out');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     let isAuthenticated = false;
+    let users = {}; // To store registered users
 
     document.querySelectorAll('.btn-cart').forEach(button => {
         button.addEventListener('click', () => {
@@ -54,11 +56,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
 
-        if (username && password) {
+        if (username && password && users[username] && users[username] === password) {
             isAuthenticated = true;
             signInModal.style.display = 'none';
             signInBtn.style.display = 'none';
             signOutBtn.style.display = 'inline-block';
+        } else {
+            alert('Invalid username or password.');
+        }
+    });
+
+    registerButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (username && password && !users[username]) {
+            users[username] = password;
+            alert(`User registered. Username: ${username}, Password: ${password}`);
+        } else {
+            alert('Username already exists or invalid input.');
         }
     });
 
