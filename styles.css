@@ -25,11 +25,6 @@ header h1 a {
     text-decoration: none;
 }
 
-nav {
-    display: flex;
-    align-items: center;
-}
-
 nav ul {
     list-style: none;
     display: flex;
@@ -41,20 +36,9 @@ nav ul li {
     margin-right: 20px;
 }
 
-nav ul li button,
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font: inherit;
-    padding: 10px;
-    margin: 0;
-}
-
-nav ul li button i {
-    margin-right: 5px;
 }
 
 .hero {
@@ -130,8 +114,7 @@ nav ul li button i {
     color: red;
 }
 
-.btn-cart,
-.btn-more-info {
+.btn-cart, .btn-more-info {
     display: block;
     margin: 10px auto;
     padding: 10px 20px;
@@ -141,8 +124,7 @@ nav ul li button i {
     cursor: pointer;
 }
 
-.btn-cart:hover,
-.btn-more-info:hover {
+.btn-cart:hover, .btn-more-info:hover {
     background-color: #555;
 }
 
@@ -161,7 +143,7 @@ footer {
     width: 300px;
     height: 100%;
     background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     padding: 20px;
     overflow-y: auto;
     z-index: 1000;
@@ -218,9 +200,8 @@ iframe {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     z-index: 1001;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -246,9 +227,8 @@ iframe {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     z-index: 1002;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -269,46 +249,117 @@ iframe {
     font-size: 20px;
     cursor: pointer;
 }
+and
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartContainer = document.getElementById('cart-container');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const paymentModal = document.getElementById('payment-modal');
+    const confirmationModal = document.getElementById('confirmation-modal');
+    const signInModal = document.getElementById('sign-in-modal');
+    const signInButton = document.getElementById('sign-in-button');
+    const signInBtn = document.querySelector('.sign-in');
+    const signOutBtn = document.querySelector('.sign-out');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    let isAuthenticated = false;
 
-/* Carousel Animation */
-@keyframes slide {
-    0% {
-        transform: translateX(0);
+    document.querySelectorAll('.btn-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.dataset.name;
+            const price = parseFloat(button.dataset.price);
+            addToCart(name, price);
+        });
+    });
+
+    document.querySelector('.view-cart').addEventListener('click', () => {
+        cartContainer.style.display = 'block';
+        renderCart();
+    });
+
+    document.querySelector('.btn-close-cart').addEventListener('click', closeCart);
+
+    document.querySelector('.btn-payment').addEventListener('click', () => {
+        if (isAuthenticated) {
+            openPaymentModal();
+        } else {
+            signInModal.style.display = 'flex';
+        }
+    });
+
+    document.querySelector('.close-modal').addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+        confirmationModal.style.display = 'none';
+        signInModal.style.display = 'none';
+    });
+
+    window.addEventListener('message', (event) => {
+        if (event.data === 'formSubmitted') {
+            closePaymentModal();
+            showConfirmationModal();
+        }
+    });
+
+    signInButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (username && password) {
+            isAuthenticated = true;
+            signInModal.style.display = 'none';
+            signInBtn.style.display = 'none';
+            signOutBtn.style.display = 'inline-block';
+        }
+    });
+
+    signOutBtn.addEventListener('click', () => {
+        isAuthenticated = false;
+        signInBtn.style.display = 'inline-block';
+        signOutBtn.style.display = 'none';
+    });
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        renderCart();
     }
-    100% {
-        transform: translateX(-100%);
+
+    function renderCart() {
+        cartItemsContainer.innerHTML = '';
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = <p>${item.name}</p><p>₹${item.price.toFixed(2)}</p>;
+            cartItemsContainer.appendChild(cartItem);
+        });
     }
-}
 
-/* Additional Styles for Carousel */
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
+    function closeCart() {
+        cartContainer.style.display = 'none';
+    }
 
-.carousel-item {
-    display: flex;
-    flex: 0 0 100%;
-    transition: transform 0.5s ease;
-}
+    function openPaymentModal() {
+        paymentModal.style.display = 'flex';
+    }
 
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-}
+    function closePaymentModal() {
+        paymentModal.style.display = 'none';
+    }
 
-.carousel-control.prev {
-    left: 10px;
-}
+    function showConfirmationModal() {
+        confirmationModal.style.display = 'flex';
+        setTimeout(() => {
+            confirmationModal.style.display = 'none';
+        }, 3000);
+    }
+});
+window.addEventListener('message', (event) => {
+    if (event.data === 'formSubmitted') {
+        closePaymentModal();
+        showConfirmationModal();
+    }
+});
 
-.carousel-control.next {
-    right: 10px;
+// Assuming you have control over the form to send this postMessage
+function formSubmit() {
+    window.parent.postMessage('formSubmitted', '*');
 }
