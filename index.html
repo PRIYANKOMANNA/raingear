@@ -17,11 +17,20 @@
                 <li><a href="#new-arrivals">New Arrivals</a></li>
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><button class="view-cart"><i class="fas fa-shopping-basket"></i> View Cart</button></li>
-                <li><button class="sign-in"><i class="fas fa-sign-in-alt"></i> Sign In</button></li>
-                <li><button class="sign-out" style="display:none;"><i class="fas fa-sign-out-alt"></i> Sign Out</button></li>
             </ul>
         </nav>
+        <button class="view-cart">
+            <i class="fas fa-shopping-basket"></i> View Cart
+        </button>
+        <button class="hamburger">
+            <i class="fas fa-bars"></i>
+        </button>
+        <button class="sign-in">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <button class="sign-out" style="display:none;">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
     </div>
 </header>
 <main>
@@ -99,7 +108,14 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
         <button id="sign-in-button">Sign In</button>
-        <button id="register-button">Register</button>
+    </div>
+</div>
+<!-- Confirmation Modal -->
+<div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Order Placed!</h2>
+        <p>Your order has been placed successfully.</p>
     </div>
 </div>
 <!-- Payment Modal -->
