@@ -6,14 +6,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmationModal = document.getElementById('confirmation-modal');
     const signInModal = document.getElementById('sign-in-modal');
     const signInButton = document.getElementById('sign-in-button');
-    const registerButton = document.getElementById('register-button');
     const signInBtn = document.querySelector('.sign-in');
     const signOutBtn = document.querySelector('.sign-out');
     const usernameInput = document.getElementById('username');
     const passwordInput = document.getElementById('password');
     let isAuthenticated = false;
-    let users = {}; // To store registered users
 
+    // Carousel variables
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const nextButton = document.querySelector('.carousel-control.next');
+    let currentIndex = 0;
+
+    // Event listeners for carousel controls
+    prevButton.addEventListener('click', () => {
+        showSlide(currentIndex - 1);
+    });
+
+    nextButton.addEventListener('click', () => {
+        showSlide(currentIndex + 1);
+    });
+
+    function showSlide(index) {
+        if (index < 0) {
+            index = carouselItems.length - 1;
+        } else if (index >= carouselItems.length) {
+            index = 0;
+        }
+
+        const offset = -index * 100;
+        carouselItems.forEach(item => {
+            item.style.transform = `translateX(${offset}%)`;
+        });
+
+        currentIndex = index;
+    }
+
+    // Event listener for 'Add to Cart' buttons
     document.querySelectorAll('.btn-cart').forEach(button => {
         button.addEventListener('click', () => {
             const name = button.dataset.name;
@@ -22,13 +51,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Event listener for 'View Cart' button
     document.querySelector('.view-cart').addEventListener('click', () => {
         cartContainer.style.display = 'block';
         renderCart();
     });
 
+    // Event listener for 'Close Cart' button
     document.querySelector('.btn-close-cart').addEventListener('click', closeCart);
 
+    // Event listener for 'Proceed to Payment' button
     document.querySelector('.btn-payment').addEventListener('click', () => {
         if (isAuthenticated) {
             openPaymentModal();
@@ -37,14 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelectorAll('.close-modal').forEach(closeButton => {
-        closeButton.addEventListener('click', () => {
-            paymentModal.style.display = 'none';
-            confirmationModal.style.display = 'none';
-            signInModal.style.display = 'none';
+    // Event listener for closing modals
+    document.querySelectorAll('.close-modal').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            closeModals();
         });
     });
 
+    // Event listener for form submission message
     window.addEventListener('message', (event) => {
         if (event.data === 'formSubmitted') {
             closePaymentModal();
@@ -52,36 +84,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Event listener for 'Sign In' button
     signInButton.addEventListener('click', () => {
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
 
-        if (username && password && users[username] && users[username] === password) {
+        if (username && password) {
             isAuthenticated = true;
             signInModal.style.display = 'none';
             signInBtn.style.display = 'none';
             signOutBtn.style.display = 'inline-block';
-        } else {
-            alert('Invalid username or password.');
+            assignCredentials(username, password);
         }
     });
 
-    registerButton.addEventListener('click', () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if (username && password && !users[username]) {
-            users[username] = password;
-            alert(`User registered. Username: ${username}, Password: ${password}`);
-        } else {
-            alert('Username already exists or invalid input.');
-        }
-    });
-
+    // Event listener for 'Sign Out' button
     signOutBtn.addEventListener('click', () => {
         isAuthenticated = false;
         signInBtn.style.display = 'inline-block';
         signOutBtn.style.display = 'none';
+        clearCredentials();
     });
 
     function addToCart(name, price) {
@@ -117,8 +139,20 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmationModal.style.display = 'none';
         }, 3000);
     }
-});
 
-function formSubmit() {
-    window.parent.postMessage('formSubmitted', '*');
-}
+    function closeModals() {
+        paymentModal.style.display = 'none';
+        confirmationModal.style.display = 'none';
+        signInModal.style.display = 'none';
+    }
+
+    function assignCredentials(username, password) {
+        // Implement your logic to store or use credentials here
+        console.log(`Username: ${username}, Password: ${password} assigned.`);
+    }
+
+    function clearCredentials() {
+        // Implement your logic to clear or reset credentials here
+        console.log('Credentials cleared.');
+    }
+});
