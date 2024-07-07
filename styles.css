@@ -1,3 +1,4 @@
+/* Example styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -25,11 +26,6 @@ header h1 a {
     text-decoration: none;
 }
 
-nav {
-    display: flex;
-    align-items: center;
-}
-
 nav ul {
     list-style: none;
     display: flex;
@@ -41,20 +37,9 @@ nav ul li {
     margin-right: 20px;
 }
 
-nav ul li button,
 nav ul li a {
     color: #fff;
     text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font: inherit;
-    padding: 10px;
-    margin: 0;
-}
-
-nav ul li button i {
-    margin-right: 5px;
 }
 
 .hero {
@@ -130,8 +115,7 @@ nav ul li button i {
     color: red;
 }
 
-.btn-cart,
-.btn-more-info {
+.btn-cart, .btn-more-info {
     display: block;
     margin: 10px auto;
     padding: 10px 20px;
@@ -141,8 +125,7 @@ nav ul li button i {
     cursor: pointer;
 }
 
-.btn-cart:hover,
-.btn-more-info:hover {
+.btn-cart:hover, .btn-more-info:hover {
     background-color: #555;
 }
 
@@ -161,7 +144,7 @@ footer {
     width: 300px;
     height: 100%;
     background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
     padding: 20px;
     overflow-y: auto;
     z-index: 1000;
@@ -218,9 +201,8 @@ iframe {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     z-index: 1001;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -246,9 +228,8 @@ iframe {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.5);
     z-index: 1002;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -268,47 +249,4 @@ iframe {
     right: 10px;
     font-size: 20px;
     cursor: pointer;
-}
-
-/* Carousel Animation */
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* Additional Styles for Carousel */
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-item {
-    display: flex;
-    flex: 0 0 100%;
-    transition: transform 0.5s ease;
-}
-
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.carousel-control.prev {
-    left: 10px;
-}
-
-.carousel-control.next {
-    right: 10px;
 }
