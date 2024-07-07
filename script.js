@@ -35,10 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.querySelector('.close-modal').addEventListener('click', () => {
-        paymentModal.style.display = 'none';
-        confirmationModal.style.display = 'none';
-        signInModal.style.display = 'none';
+    document.querySelectorAll('.close-modal').forEach(closeButton => {
+        closeButton.addEventListener('click', () => {
+            paymentModal.style.display = 'none';
+            confirmationModal.style.display = 'none';
+            signInModal.style.display = 'none';
+        });
     });
 
     window.addEventListener('message', (event) => {
@@ -100,14 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 });
-window.addEventListener('message', (event) => {
-    if (event.data === 'formSubmitted') {
-        closePaymentModal();
-        showConfirmationModal();
-    }
-});
 
-// Assuming you have control over the form to send this postMessage
 function formSubmit() {
     window.parent.postMessage('formSubmitted', '*');
 }
