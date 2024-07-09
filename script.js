@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const signInModal = document.getElementById('sign-in-modal');
     const closeModalButtons = document.querySelectorAll('.close-modal');
     const signInModalButton = document.getElementById('sign-in-button');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    // Check sign-in state on page load
+    if (localStorage.getItem('signedIn') === 'true') {
+        signInButton.style.display = 'none';
+        signOutButton.style.display = 'block';
+    }
 
     signInButton.addEventListener('click', () => {
         signInModal.style.display = 'block';
@@ -17,16 +25,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     signInModalButton.addEventListener('click', () => {
-        // Here, add your logic to handle sign-in
-        alert('Sign-In logic goes here');
-        signInModal.style.display = 'none';
-        signInButton.style.display = 'none';
-        signOutButton.style.display = 'block';
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        // Mock authentication logic
+        if (username === 'user' && password === 'password') {
+            localStorage.setItem('signedIn', 'true');
+            alert('Sign-In successful');
+            signInModal.style.display = 'none';
+            signInButton.style.display = 'none';
+            signOutButton.style.display = 'block';
+        } else {
+            alert('Invalid username or password');
+        }
     });
 
     signOutButton.addEventListener('click', () => {
-        // Here, add your logic to handle sign-out
-        alert('Sign-Out logic goes here');
+        localStorage.setItem('signedIn', 'false');
+        alert('Signed out');
         signOutButton.style.display = 'none';
         signInButton.style.display = 'block';
     });
@@ -94,4 +110,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial slide
     showSlide(currentSlide);
+
+    // Chatbot functionality
+    const chatButton = document.getElementById('chat-button');
+    const chatWindow = document.getElementById('chat-window');
+    const chatCloseButton = document.getElementById('chat-close');
+    const chatInput = document.getElementById('chat-input');
+    const chatMessages = document.getElementById('chat-messages');
+
+    chatButton.addEventListener('click', () => {
+        chatWindow.style.display = 'block';
+    });
+
+    chatCloseButton.addEventListener('click', () => {
+        chatWindow.style.display = 'none';
+    });
+
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const message = chatInput.value;
+            if (message.trim()) {
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('message', 'user-message');
+                userMessage.textContent = message;
+                chatMessages.appendChild(userMessage);
+                chatInput.value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.classList.add('message', 'bot-message');
+                    botMessage.textContent = 'This is a bot response.';
+                    chatMessages.appendChild(botMessage);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+            }
+        }
+    });
 });
