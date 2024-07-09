@@ -38,14 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const chatMessages = chatBot.querySelector('#chat-messages');
     const chatBotToggle = document.getElementById('chat-bot-toggle');
 
-    chatBotToggle.addEventListener('mouseover', () => {
-        chatBot.classList.toggle('open');
-        chatBotToggle.classList.toggle('hidden');
+    chatBotToggle.addEventListener('click', () => {
+        chatBot.classList.toggle('hidden');
     });
 
     closeChatButton.addEventListener('click', () => {
-        chatBot.classList.remove('open');
-        chatBotToggle.classList.remove('hidden');
+        chatBot.classList.add('hidden');
     });
 
     sendChatButton.addEventListener('click', sendMessage);
@@ -79,26 +77,90 @@ document.addEventListener('DOMContentLoaded', function() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    // Contact Form submission
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+    // Cart Functionality
+    const cartContainer = document.getElementById('cart-container');
+    const cartItems = document.getElementById('cart-items');
+    const viewCartButton = document.querySelector('.view-cart');
+    const closeCartButton = document.querySelector('.btn-close-cart');
+    const proceedToPaymentButton = document.querySelector('.btn-payment');
+    const products = document.querySelectorAll('.btn-cart');
 
-        // Here you can implement the logic to send the form data
-        console.log(`Name: ${name}, Email: ${email}, Message: ${message}`);
-        // For example, send data to server or perform further actions
-
-        // Clear the form fields after submission
-        document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
-        document.getElementById('message').value = '';
-
-        // Optionally, show a confirmation message or redirect
-        alert('Message sent successfully!');
+    viewCartButton.addEventListener('click', () => {
+        cartContainer.classList.add('open');
     });
 
-    // Additional JavaScript specific to blog.html or other pages can be added here
+    closeCartButton.addEventListener('click', () => {
+        cartContainer.classList.remove('open');
+    });
+
+    proceedToPaymentButton.addEventListener('click', () => {
+        // Open payment modal or proceed to payment logic here
+        document.getElementById('payment-modal').style.display = 'block';
+    });
+
+    products.forEach(product => {
+        product.addEventListener('click', () => {
+            const productName = product.getAttribute('data-name');
+            const productPrice = parseFloat(product.getAttribute('data-price'));
+
+            // Add item to cart
+            addItemToCart(productName, productPrice);
+        });
+    });
+
+    function addItemToCart(name, price) {
+        const item = document.createElement('div');
+        item.classList.add('cart-item');
+        item.innerHTML = `
+            <p>${name} - ₹${price}</p>
+            <button class="btn-remove-item">Remove</button>
+        `;
+        cartItems.appendChild(item);
+
+        // Update total price
+        updateTotalPrice(price);
+    }
+
+    function updateTotalPrice(price) {
+        const totalPriceElement = document.getElementById('total-price');
+        let totalPrice = parseFloat(totalPriceElement.textContent.replace('Total: ₹', ''));
+        totalPrice += price;
+        totalPriceElement.textContent = `Total: ₹${totalPrice.toFixed(2)}`;
+    }
+
+    // Remove item from cart
+    cartItems.addEventListener('click', (e) => {
+        if (e.target.classList.contains('btn-remove-item')) {
+            const item = e.target.parentElement;
+            const price = parseFloat(item.querySelector('p').textContent.split(' - ')[1].replace('₹', ''));
+            item.remove();
+            updateTotalPrice(-price);
+        }
+    });
+
+    // Payment Modal
+    const paymentModal = document.getElementById('payment-modal');
+    const closePaymentModal = paymentModal.querySelector('.close-modal');
+
+    closePaymentModal.addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+    });
+
+    // Contact Form submission (assuming contact.html implementation)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Implement your logic to handle form submission (e.g., send data to server)
+
+            // Optional: Show a confirmation message or clear the form
+            alert('Message sent successfully!');
+            contactForm.reset(); // Reset form fields after submission
+        });
+    }
+
 });
