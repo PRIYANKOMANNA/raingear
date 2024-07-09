@@ -197,7 +197,8 @@
 </div>
 
 <!-- Chat Bot -->
-<div id="chat-bot" class="chat-bot">
+<!-- Chat Bot -->
+<div id="chat-bot" class="chat-bot hidden">
     <div class="chat-header">
         <h3>Chat with us</h3>
         <button class="close-chat">&times;</button>
@@ -206,11 +207,19 @@
         <div class="chat-messages" id="chat-messages">
             <!-- Messages will be dynamically added here -->
         </div>
-        <input type="text" id="chat-input" placeholder="Type your message...">
-        <button id="send-chat">Send</button>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-chat">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
+</div>
+<div id="chat-bot-toggle" class="chat-bot-toggle">
+    <i class="fas fa-comment-dots"></i>
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

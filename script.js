@@ -155,30 +155,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const sendChatButton = chatBot.querySelector('#send-chat');
     const chatInput = chatBot.querySelector('#chat-input');
     const chatMessages = chatBot.querySelector('#chat-messages');
+    const chatBotToggle = document.getElementById('chat-bot-toggle');
 
-    chatHeader.addEventListener('click', () => {
+    chatBotToggle.addEventListener('click', () => {
         chatBot.classList.toggle('open');
+        chatBotToggle.classList.toggle('hidden');
     });
 
     closeChatButton.addEventListener('click', () => {
         chatBot.classList.remove('open');
+        chatBotToggle.classList.remove('hidden');
     });
 
-    sendChatButton.addEventListener('click', () => {
+    sendChatButton.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
         const message = chatInput.value.trim();
         if (message) {
-            const userMessage = document.createElement('p');
-            userMessage.textContent = message;
-            chatMessages.appendChild(userMessage);
+            addMessage(message, 'user-message');
             chatInput.value = '';
 
             // Simulate bot response
             setTimeout(() => {
-                const botMessage = document.createElement('p');
-                botMessage.textContent = 'Bot response to: ' + message;
-                chatMessages.appendChild(botMessage);
+                addMessage('Bot response to: ' + message);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 1000);
         }
-    });
+    }
+
+    function addMessage(message, className = '') {
+        const messageElement = document.createElement('p');
+        messageElement.textContent = message;
+        if (className) {
+            messageElement.classList.add(className);
+        }
+        chatMessages.appendChild(messageElement);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 });
