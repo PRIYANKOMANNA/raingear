@@ -1,16 +1,8 @@
-/* Reset */
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f0f0f0;
-    padding: 20px;
 }
 
 .container {
@@ -19,149 +11,355 @@ body {
     padding: 0 20px;
 }
 
-h1, h2, h3 {
-    margin-bottom: 10px;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-/* Header */
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
-}
-
-header .container {
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-header nav ul {
-    display: flex;
+header h1 a {
+    color: #fff;
+    text-decoration: none;
 }
 
-header nav ul li {
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
     margin-right: 20px;
 }
 
-header nav ul li a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
-    transition: color 0.3s ease;
 }
 
-header nav ul li a:hover {
-    color: #ffd700;
+.hero {
+    position: relative;
 }
 
-header .view-cart, header .hamburger, header .sign-in, header .sign-out {
-    background-color: transparent;
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    position: absolute;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+
+.carousel-item.active {
+    display: block;
+    position: relative;
+}
+
+.carousel-item img {
+    width: 100%;
+}
+
+.carousel-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
-    cursor: pointer;
     padding: 10px;
-    margin-left: 10px;
+    cursor: pointer;
 }
 
-header .view-cart:hover, header .hamburger:hover, header .sign-in:hover, header .sign-out:hover {
-    color: #ffd700;
+.carousel-control.prev {
+    left: 10px;
 }
 
-/* Main Content */
-main {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 20px;
+.carousel-control.next {
+    right: 10px;
 }
 
 .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    padding: 20px 0;
 }
 
 .product {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
     text-align: center;
 }
 
 .product img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    width: 100%;
 }
 
-.product h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
+.price {
+    color: red;
 }
 
-.product p.price {
-    font-size: 16px;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-.product button {
+.btn-cart, .btn-more-info {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
     background-color: #333;
     color: #fff;
     border: none;
-    padding: 8px 15px;
-    border-radius: 3px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.product button:hover {
+.btn-cart:hover, .btn-more-info:hover {
     background-color: #555;
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    margin-top: 20px;
 }
 
-footer p {
+.cart-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.cart-container h2 {
+    text-align: center;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-item p {
     margin: 0;
 }
 
-/* Media Queries */
-@media (max-width: 1200px) {
-    .products {
-        grid-template-columns: repeat(4, 1fr);
-    }
+.btn-close-cart {
+    display: block;
+    margin: 20px auto 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
-@media (max-width: 992px) {
-    .products {
-        grid-template-columns: repeat(3, 1fr);
-    }
+.btn-payment {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }
 
-@media (max-width: 768px) {
-    .products {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.btn-payment:hover {
+    background-color: #218838;
 }
 
-@media (max-width: 576px) {
-    .products {
-        grid-template-columns: 1fr;
+iframe {
+    width: 100%;
+    height: 80vh;
+    border: none;
+}
+
+#payment-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1001;
+    justify-content: center;
+    align-items: center;
+}
+
+#payment-modal iframe {
+    width: 80%;
+    height: 80%;
+}
+
+#payment-modal .close-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1002;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+and
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartContainer = document.getElementById('cart-container');
+    const cartItemsContainer = document.getElementById('cart-items');
+    const paymentModal = document.getElementById('payment-modal');
+    const confirmationModal = document.getElementById('confirmation-modal');
+    const signInModal = document.getElementById('sign-in-modal');
+    const signInButton = document.getElementById('sign-in-button');
+    const signInBtn = document.querySelector('.sign-in');
+    const signOutBtn = document.querySelector('.sign-out');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    let isAuthenticated = false;
+
+    document.querySelectorAll('.btn-cart').forEach(button => {
+        button.addEventListener('click', () => {
+            const name = button.dataset.name;
+            const price = parseFloat(button.dataset.price);
+            addToCart(name, price);
+        });
+    });
+
+    document.querySelector('.view-cart').addEventListener('click', () => {
+        cartContainer.style.display = 'block';
+        renderCart();
+    });
+
+    document.querySelector('.btn-close-cart').addEventListener('click', closeCart);
+
+    document.querySelector('.btn-payment').addEventListener('click', () => {
+        if (isAuthenticated) {
+            openPaymentModal();
+        } else {
+            signInModal.style.display = 'flex';
+        }
+    });
+
+    document.querySelector('.close-modal').addEventListener('click', () => {
+        paymentModal.style.display = 'none';
+        confirmationModal.style.display = 'none';
+        signInModal.style.display = 'none';
+    });
+
+    window.addEventListener('message', (event) => {
+        if (event.data === 'formSubmitted') {
+            closePaymentModal();
+            showConfirmationModal();
+        }
+    });
+
+    signInButton.addEventListener('click', () => {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (username && password) {
+            isAuthenticated = true;
+            signInModal.style.display = 'none';
+            signInBtn.style.display = 'none';
+            signOutBtn.style.display = 'inline-block';
+        }
+    });
+
+    signOutBtn.addEventListener('click', () => {
+        isAuthenticated = false;
+        signInBtn.style.display = 'inline-block';
+        signOutBtn.style.display = 'none';
+    });
+
+    function addToCart(name, price) {
+        cart.push({ name, price });
+        renderCart();
     }
+
+    function renderCart() {
+        cartItemsContainer.innerHTML = '';
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = <p>${item.name}</p><p>₹${item.price.toFixed(2)}</p>;
+            cartItemsContainer.appendChild(cartItem);
+        });
+    }
+
+    function closeCart() {
+        cartContainer.style.display = 'none';
+    }
+
+    function openPaymentModal() {
+        paymentModal.style.display = 'flex';
+    }
+
+    function closePaymentModal() {
+        paymentModal.style.display = 'none';
+    }
+
+    function showConfirmationModal() {
+        confirmationModal.style.display = 'flex';
+        setTimeout(() => {
+            confirmationModal.style.display = 'none';
+        }, 3000);
+    }
+});
+window.addEventListener('message', (event) => {
+    if (event.data === 'formSubmitted') {
+        closePaymentModal();
+        showConfirmationModal();
+    }
+});
+
+// Assuming you have control over the form to send this postMessage
+function formSubmit() {
+    window.parent.postMessage('formSubmitted', '*');
 }
