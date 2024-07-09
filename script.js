@@ -148,3 +148,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const chatBot = document.getElementById('chat-bot');
+    const chatHeader = chatBot.querySelector('.chat-header');
+    const closeChatButton = chatBot.querySelector('.close-chat');
+    const sendChatButton = chatBot.querySelector('#send-chat');
+    const chatInput = chatBot.querySelector('#chat-input');
+    const chatMessages = chatBot.querySelector('#chat-messages');
+
+    chatHeader.addEventListener('click', () => {
+        chatBot.classList.toggle('open');
+    });
+
+    closeChatButton.addEventListener('click', () => {
+        chatBot.classList.remove('open');
+    });
+
+    sendChatButton.addEventListener('click', () => {
+        const message = chatInput.value.trim();
+        if (message) {
+            const userMessage = document.createElement('p');
+            userMessage.textContent = message;
+            chatMessages.appendChild(userMessage);
+            chatInput.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botMessage = document.createElement('p');
+                botMessage.textContent = 'Bot response to: ' + message;
+                chatMessages.appendChild(botMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+    });
+});

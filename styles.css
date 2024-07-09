@@ -1,365 +1,89 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 a {
-    color: #fff;
-    text-decoration: none;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.hero {
-    position: relative;
-}
-
-.carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-item {
-    display: none;
-    position: absolute;
-    width: 100%;
-    transition: all 0.5s ease;
-}
-
-.carousel-item.active {
-    display: block;
-    position: relative;
-}
-
-.carousel-item img {
-    width: 100%;
-}
-
-.carousel-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-}
-
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.carousel-control.prev {
-    left: 10px;
-}
-
-.carousel-control.next {
-    right: 10px;
-}
-
-.products {
-    padding: 20px 0;
-}
-
-.product {
-    display: inline-block;
-    width: 30%;
-    margin: 10px;
-    text-align: center;
-}
-
-.product img {
-    width: 100%;
-}
-
-.price {
-    color: red;
-}
-
-.btn-cart, .btn-more-info {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-cart:hover, .btn-more-info:hover {
-    background-color: #555;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-}
-
-.cart-container {
-    display: none;
+/* Chat Bot Styles */
+.chat-bot {
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.cart-container h2 {
-    text-align: center;
-}
-
-.cart-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.cart-item p {
-    margin: 0;
-}
-
-.btn-close-cart {
-    display: block;
-    margin: 20px auto 10px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-payment {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-payment:hover {
-    background-color: #218838;
-}
-
-iframe {
-    width: 100%;
-    height: 80vh;
-    border: none;
-}
-
-#payment-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1001;
-    justify-content: center;
-    align-items: center;
-}
-
-#payment-modal iframe {
-    width: 80%;
-    height: 80%;
-}
-
-#payment-modal .close-modal {
-    position: absolute;
-    top: 20px;
+    bottom: 20px;
     right: 20px;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
+    width: 300px;
+    max-width: 90%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(100%);
+    opacity: 0;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1002;
-    justify-content: center;
+.chat-bot.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chat-header {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
 }
 
-.close-modal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.chat-header .close-chat {
+    background: none;
+    border: none;
+    color: #fff;
     font-size: 20px;
     cursor: pointer;
 }
-and
-document.addEventListener('DOMContentLoaded', () => {
-    const cart = [];
-    const cartContainer = document.getElementById('cart-container');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const paymentModal = document.getElementById('payment-modal');
-    const confirmationModal = document.getElementById('confirmation-modal');
-    const signInModal = document.getElementById('sign-in-modal');
-    const signInButton = document.getElementById('sign-in-button');
-    const signInBtn = document.querySelector('.sign-in');
-    const signOutBtn = document.querySelector('.sign-out');
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-    let isAuthenticated = false;
 
-    document.querySelectorAll('.btn-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const name = button.dataset.name;
-            const price = parseFloat(button.dataset.price);
-            addToCart(name, price);
-        });
-    });
+.chat-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
 
-    document.querySelector('.view-cart').addEventListener('click', () => {
-        cartContainer.style.display = 'block';
-        renderCart();
-    });
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
 
-    document.querySelector('.btn-close-cart').addEventListener('click', closeCart);
+.chat-messages p {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
 
-    document.querySelector('.btn-payment').addEventListener('click', () => {
-        if (isAuthenticated) {
-            openPaymentModal();
-        } else {
-            signInModal.style.display = 'flex';
-        }
-    });
+#chat-input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(100% - 80px);
+}
 
-    document.querySelector('.close-modal').addEventListener('click', () => {
-        paymentModal.style.display = 'none';
-        confirmationModal.style.display = 'none';
-        signInModal.style.display = 'none';
-    });
+#send-chat {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: 10px;
+}
 
-    window.addEventListener('message', (event) => {
-        if (event.data === 'formSubmitted') {
-            closePaymentModal();
-            showConfirmationModal();
-        }
-    });
-
-    signInButton.addEventListener('click', () => {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
-
-        if (username && password) {
-            isAuthenticated = true;
-            signInModal.style.display = 'none';
-            signInBtn.style.display = 'none';
-            signOutBtn.style.display = 'inline-block';
-        }
-    });
-
-    signOutBtn.addEventListener('click', () => {
-        isAuthenticated = false;
-        signInBtn.style.display = 'inline-block';
-        signOutBtn.style.display = 'none';
-    });
-
-    function addToCart(name, price) {
-        cart.push({ name, price });
-        renderCart();
-    }
-
-    function renderCart() {
-        cartItemsContainer.innerHTML = '';
-        cart.forEach(item => {
-            const cartItem = document.createElement('div');
-            cartItem.classList.add('cart-item');
-            cartItem.innerHTML = <p>${item.name}</p><p>₹${item.price.toFixed(2)}</p>;
-            cartItemsContainer.appendChild(cartItem);
-        });
-    }
-
-    function closeCart() {
-        cartContainer.style.display = 'none';
-    }
-
-    function openPaymentModal() {
-        paymentModal.style.display = 'flex';
-    }
-
-    function closePaymentModal() {
-        paymentModal.style.display = 'none';
-    }
-
-    function showConfirmationModal() {
-        confirmationModal.style.display = 'flex';
-        setTimeout(() => {
-            confirmationModal.style.display = 'none';
-        }, 3000);
-    }
-});
-window.addEventListener('message', (event) => {
-    if (event.data === 'formSubmitted') {
-        closePaymentModal();
-        showConfirmationModal();
-    }
-});
-
-// Assuming you have control over the form to send this postMessage
-function formSubmit() {
-    window.parent.postMessage('formSubmitted', '*');
+/* Chat bot visibility */
+.chat-bot.hidden {
+    display: none;
 }
