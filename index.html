@@ -15,19 +15,13 @@
             <ul id="menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#new-arrivals">New Arrivals</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="view-cart"><i class="fas fa-shopping-basket"></i> View Cart</button></li>
+                <li><button class="sign-in"><i class="fas fa-sign-in-alt"></i> Sign In</button></li>
+                <li><button class="sign-out" style="display:none;"><i class="fas fa-sign-out-alt"></i> Sign Out</button></li>
             </ul>
         </nav>
-        <button class="view-cart">
-            <i class="fas fa-shopping-basket"></i> View Cart
-        </button>
-        <button class="sign-in">
-            <i class="fas fa-sign-in-alt"></i> Sign In
-        </button>
-        <button class="sign-out" style="display:none;">
-            <i class="fas fa-sign-out-alt"></i> Sign Out
-        </button>
     </div>
 </header>
 <main>
@@ -83,7 +77,7 @@
             <button class="btn-cart" data-name="Leather Wallet" data-price="299">Add to Cart</button>
             <button class="btn-more-info" data-name="Leather Wallet">More Info</button>
         </article>
-        <!-- Products 5 to 100 -->
+        <!-- Additional products go here -->
         <article class="product">
             <img src="assets/images/populer-products/p5.jpg" alt="Product 5">
             <h3><a href="https://www.example.com/product5">Product 5</a></h3>
@@ -146,14 +140,6 @@
             <button class="btn-cart" data-name="Product 99" data-price="9999">Add to Cart</button>
             <button class="btn-more-info" data-name="Product 99">More Info</button>
         </article>
-        <!-- Product 100 -->
-        <article class="product">
-            <img src="assets/images/populer-products/p100.jpg" alt="Umbrella_hat">
-            <h3><a href="https://www.example.com/product100">Umbrella Hat</a></h3>
-            <p class="price">₹10099.00 <del>₹10199.00</del></p>
-            <button class="btn-cart" data-name="Product 100" data-price="10099">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 100">More Info</button>
-        </article>
     </section>
 </main>
 <div id="cart-container" class="cart-container">
@@ -175,14 +161,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
         <button id="sign-in-button">Sign In</button>
-    </div>
-</div>
-<!-- Confirmation Modal -->
-<div id="confirmation-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2>Order Placed!</h2>
-        <p>Your order has been placed successfully.</p>
+        <button id="register-button">Register</button>
     </div>
 </div>
 <!-- Payment Modal -->
@@ -193,30 +172,10 @@
     </div>
 </div>
 
-<!-- Chat Bot -->
-<!-- Chat Bot -->
-<div id="chat-bot" class="chat-bot hidden">
-    <div class="chat-header">
-        <h3>Chat with us</h3>
-        <button class="close-chat">&times;</button>
-    </div>
-    <div class="chat-content">
-        <div class="chat-messages" id="chat-messages">
-            <!-- Messages will be dynamically added here -->
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Type your message...">
-            <button id="send-chat">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-</div>
-<div id="chat-bot-toggle" class="chat-bot-toggle">
-    <i class="fas fa-comment-dots"></i>
-</div>
-
 <script src="script.js"></script>
-
 </body>
 </html>
+
+
+
+
