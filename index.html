@@ -83,62 +83,7 @@
             <button class="btn-cart" data-name="Leather Wallet" data-price="299">Add to Cart</button>
             <button class="btn-more-info" data-name="Leather Wallet">More Info</button>
         </article>
-        <!-- Products 5 to 100 -->
-        <article class="product">
-            <img src="assets/images/populer-products/p5.jpg" alt="Product 5">
-            <h3><a href="https://www.example.com/product5">Product 5</a></h3>
-            <p class="price">₹599.00 <del>₹699.00</del></p>
-            <button class="btn-cart" data-name="Product 5" data-price="599">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 5">More Info</button>
-        </article>
-        <article class="product">
-            <img src="assets/images/populer-products/p6.jpg" alt="Product 6">
-            <h3><a href="https://www.example.com/product6">Product 6</a></h3>
-            <p class="price">₹699.00 <del>₹799.00</del></p>
-            <button class="btn-cart" data-name="Product 6" data-price="699">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 6">More Info</button>
-        </article>
-        <article class="product">
-            <img src="assets/images/populer-products/p7.jpg" alt="Product 7">
-            <h3><a href="https://www.example.com/product7">Product 7</a></h3>
-            <p class="price">₹799.00 <del>₹899.00</del></p>
-            <button class="btn-cart" data-name="Product 7" data-price="799">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 7">More Info</button>
-        </article>
-        <!-- Repeat similar structure for products 8 to 100 -->
-        <!-- Example for product 8 -->
-        <article class="product">
-            <img src="assets/images/populer-products/p8.jpg" alt="Product 8">
-            <h3><a href="https://www.example.com/product8">Product 8</a></h3>
-            <p class="price">₹899.00 <del>₹999.00</del></p>
-            <button class="btn-cart" data-name="Product 8" data-price="899">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 8">More Info</button>
-        </article>
-        <!-- Continue for the rest of the products -->
-        <article class="product">
-            <img src="assets/images/populer-products/p96.jpg" alt="Product 96">
-            <h3><a href="https://www.example.com/product96">Product 96</a></h3>
-            <p class="price">₹9699.00 <del>₹9799.00</del></p>
-            <button class="btn-cart" data-name="Product 96" data-price="9699">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 96">More Info</button>
-        </article>
-        <!-- Product 97 -->
-        <article class="product">
-            <img src="assets/images/populer-products/p97.jpg" alt="Product 97">
-            <h3><a href="https://www.example.com/product97">Product 97</a></h3>
-            <p class="price">₹9799.00 <del>₹9899.00</del></p>
-            <button class="btn-cart" data-name="Product 97" data-price="9799">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 97">More Info</button>
-        </article>
-        <!-- Product 98 -->
-        <article class="product">
-            <img src="assets/images/populer-products/p10.jpg" alt="Product 98">
-            <h3><a href="https://www.example.com/product98">Product 98</a></h3>
-            <p class="price">₹9899.00 <del>₹9999.00</del></p>
-            <button class="btn-cart" data-name="Product 98" data-price="9899">Add to Cart</button>
-            <button class="btn-more-info" data-name="Product 98">More Info</button>
-        </article>
-        <!-- Product 99 -->
+        <!-- Additional product articles... -->
         <article class="product">
             <img src="assets/images/populer-products/p99.jpg" alt="Clay Pot">
             <h3><a href="https://www.example.com/product99">Clay Pot</a></h3>
@@ -146,9 +91,8 @@
             <button class="btn-cart" data-name="Product 99" data-price="9999">Add to Cart</button>
             <button class="btn-more-info" data-name="Product 99">More Info</button>
         </article>
-        <!-- Product 100 -->
         <article class="product">
-            <img src="assets/images/populer-products/p100.jpg" alt="Umbrella_hat">
+            <img src="assets/images/populer-products/p100.jpg" alt="Umbrella Hat">
             <h3><a href="https://www.example.com/product100">Umbrella Hat</a></h3>
             <p class="price">₹10099.00 <del>₹10199.00</del></p>
             <button class="btn-cart" data-name="Product 100" data-price="10099">Add to Cart</button>
@@ -159,7 +103,7 @@
 <div id="cart-container" class="cart-container">
     <h2>Your Cart</h2>
     <div id="cart-items"></div>
-    <button class="btn-close-cart" onclick="closeCart()">Close</button>
+    <button class="btn-close-cart">Close</button>
     <button class="btn-payment">Proceed to Payment</button>
 </div>
 <footer>
@@ -186,7 +130,12 @@
     </div>
 </div>
 <!-- Payment Modal -->
-
+<div id="payment-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"></iframe>
+    </div>
+</div>
 
 <!-- Chat Bot -->
 <div id="chat-bot" class="chat-bot hidden">
@@ -199,7 +148,7 @@
             <!-- Messages will be dynamically added here -->
         </div>
         <div class="chat-input-area">
-            <label for="chat-input"></label><input type="text" id="chat-input" placeholder="Type your message...">
+            <input type="text" id="chat-input" placeholder="Type your message...">
             <button id="send-chat">
                 <i class="fas fa-paper-plane"></i>
             </button>
