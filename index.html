@@ -3,94 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My E-commerce Website</title>
+    <title>Raingear</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 <header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Blog</a></li>
-        </ul>
-        <button class="view-cart">View Cart</button>
-        <button class="sign-in">Sign In</button>
-        <button class="sign-out" style="display: none;">Sign Out</button>
-    </nav>
+    <div class="container">
+        <h1><a href="https://cscdigitalindia.in">Raingear || Our Another website</a></h1>
+        <nav>
+            <ul id="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#new-arrivals">New Arrivals</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="view-cart">
+            <i class="fas fa-shopping-basket"></i> View Cart
+        </button>
+        <button class="sign-in">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+        <button class="sign-out" style="display:none;">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+        </button>
+    </div>
 </header>
-
-<section class="hero">
-    <div class="carousel">
-        <div class="carousel-item active"><img src="image1.jpg" alt="Image 1"></div>
-        <div class="carousel-item"><img src="image2.jpg" alt="Image 2"></div>
-        <div class="carousel-item"><img src="image3.jpg" alt="Image 3"></div>
-    </div>
-    <button class="carousel-control prev">❮</button>
-    <button class="carousel-control next">❯</button>
-</section>
-
-<section class="products">
-    <div class="product">
-        <img src="product1.jpg" alt="Product 1">
-        <p>Product 1 - ₹1000</p>
-        <button class="btn-cart" data-name="Product 1" data-price="1000">Add to Cart</button>
-    </div>
-    <div class="product">
-        <img src="product2.jpg" alt="Product 2">
-        <p>Product 2 - ₹1500</p>
-        <button class="btn-cart" data-name="Product 2" data-price="1500">Add to Cart</button>
-    </div>
-    <!-- Add more products as needed -->
-</section>
-
+<main>
+    <section id="home" class="hero">
+        <div class="carousel">
+            <div class="carousel-item active">
+                <img src="assets/images/slider/slider1.png" alt="Lucky Bamboo">
+                <div class="carousel-content">
+                    <h2>Lucky Bamboo Collection</h2>
+                    <p>Home Decoration item || Peace || Showpiece</p>
+                    <p class="price">₹399.00 <del>₹499.00</del></p>
+                    <button class="btn-cart" data-name="Lucky Bamboo" data-price="399">Add to Cart</button>
+                    <button class="btn-more-info" data-name="Lucky Bamboo">More Info</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="assets/images/slider/slider2.png" alt="Portable Laptop Table">
+                <div class="carousel-content">
+                    <h2>Portable Laptop Table</h2>
+                    <p>Best Quality and Cheapest Price || Student Table || Laptop Table</p>
+                    <p class="price">₹299.00 <del>₹499.00</del></p>
+                    <button class="btn-cart" data-name="Portable Laptop Table" data-price="299">Add to Cart</button>
+                    <button class="btn-more-info" data-name="Portable Laptop Table">More Info</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="assets/images/slider/slider3.png" alt="Modern Desk Lamp">
+                <div class="carousel-content">
+                    <h2>Modern Desk Lamp</h2>
+                    <p>Stylish and Energy Efficient || Perfect for Study || Office Desk</p>
+                    <p class="price">₹499.00 <del>₹799.00</del></p>
+                    <button class="btn-cart" data-name="Modern Desk Lamp" data-price="499">Add to Cart</button>
+                    <button class="btn-more-info" data-name="Modern Desk Lamp">More Info</button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control prev" aria-label="Previous slide">&#10094;</button>
+        <button class="carousel-control next" aria-label="Next slide">&#10095;</button>
+    </section>
+    <section id="new-arrivals" class="products">
+        <h2>New Arrivals</h2>
+        <article class="product">
+            <img src="assets/images/populer-products/p1.png" alt="Black Umbrella">
+            <h3><a href="https://www.amazon.in/...">Black Umbrella</a></h3>
+            <p class="price">₹199.00 <del>₹299.00</del></p>
+            <button class="btn-cart" data-name="Black Umbrella" data-price="199">Add to Cart</button>
+            <button class="btn-more-info" data-name="Black Umbrella">More Info</button>
+        </article>
+        <article class="product">
+            <img src="assets/images/populer-products/p2.png" alt="Leather Wallet">
+            <h3><a href="https://www.amazon.in/...">Leather Wallet</a></h3>
+            <p class="price">₹299.00 <del>₹499.00</del></p>
+            <button class="btn-cart" data-name="Leather Wallet" data-price="299">Add to Cart</button>
+            <button class="btn-more-info" data-name="Leather Wallet">More Info</button>
+        </article>
+        <!-- Additional product articles... -->
+        <article class="product">
+            <img src="assets/images/populer-products/p99.jpg" alt="Clay Pot">
+            <h3><a href="https://www.example.com/product99">Clay Pot</a></h3>
+            <p class="price">₹9999.00 <del>₹10099.00</del></p>
+            <button class="btn-cart" data-name="Product 99" data-price="9999">Add to Cart</button>
+            <button class="btn-more-info" data-name="Product 99">More Info</button>
+        </article>
+        <article class="product">
+            <img src="assets/images/populer-products/p100.jpg" alt="Umbrella Hat">
+            <h3><a href="https://www.example.com/product100">Umbrella Hat</a></h3>
+            <p class="price">₹10099.00 <del>₹10199.00</del></p>
+            <button class="btn-cart" data-name="Product 100" data-price="10099">Add to Cart</button>
+            <button class="btn-more-info" data-name="Product 100">More Info</button>
+        </article>
+    </section>
+</main>
 <div id="cart-container" class="cart-container">
-    <h2>Shopping Cart</h2>
+    <h2>Your Cart</h2>
     <div id="cart-items"></div>
     <button class="btn-close-cart">Close</button>
     <button class="btn-payment">Proceed to Payment</button>
 </div>
-
+<footer>
+    <p>&copy; 2024 Raingear. All rights reserved.</p>
+</footer>
+<!-- Sign-In Modal -->
 <div id="sign-in-modal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <h2>Sign In</h2>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button>Sign In</button>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <button id="sign-in-button">Sign In</button>
     </div>
 </div>
-
+<!-- Confirmation Modal -->
+<div id="confirmation-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Order Placed!</h2>
+        <p>Your order has been placed successfully.</p>
+    </div>
+</div>
+<!-- Payment Modal -->
 <div id="payment-modal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
-        <h2>Payment</h2>
-        <!-- Payment form goes here -->
-        <button>Pay Now</button>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdVAfHoPaHO9REcnwansPOb5DHzBHQLq9Z4JEMRj_CSt1fQ9w/viewform?embedded=true"></iframe>
     </div>
 </div>
 
+<!-- Chat Bot -->
 <div id="chat-bot" class="chat-bot hidden">
     <div class="chat-header">
-        <h3>Chat Bot</h3>
-        <span class="close-chat">&times;</span>
+        <h3>Chat with us</h3>
+        <button class="close-chat">&times;</button>
     </div>
     <div class="chat-content">
-        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-messages" id="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Type a message...">
-            <button id="send-chat">Send</button>
+            <input type="text" id="chat-input" placeholder="Type your message...">
+            <button id="send-chat">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
 </div>
-
-<div id="chat-bot-toggle" class="chat-bot-toggle">💬</div>
-
-<footer>
-    <p>&copy; 2024 My E-commerce Website</p>
-</footer>
+<div id="chat-bot-toggle" class="chat-bot-toggle">
+    <i class="fas fa-comment-dots"></i>
+</div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
