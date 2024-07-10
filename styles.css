@@ -1,20 +1,7 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f8f8;
-}
-
-h1 a {
-    text-decoration: none;
     color: #333;
 }
 
@@ -33,7 +20,6 @@ nav ul li a {
     color: #333;
 }
 
-/* Cart button */
 .view-cart, .sign-in, .sign-out {
     background-color: #333;
     color: white;
@@ -46,7 +32,6 @@ nav ul li a {
     background-color: #555;
 }
 
-/* Hero section */
 .hero {
     position: relative;
 }
@@ -69,15 +54,6 @@ nav ul li a {
     object-fit: cover;
 }
 
-.carousel-content {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 20px;
-}
-
 .carousel-control {
     position: absolute;
     top: 50%;
@@ -97,7 +73,6 @@ nav ul li a {
     right: 10px;
 }
 
-/* Products section */
 .products {
     padding: 20px;
 }
@@ -115,7 +90,6 @@ nav ul li a {
     object-fit: cover;
 }
 
-/* Cart container */
 .cart-container {
     display: none;
     position: fixed;
@@ -144,7 +118,6 @@ nav ul li a {
     background-color: #555;
 }
 
-/* Footer */
 footer {
     background-color: #333;
     color: white;
@@ -152,7 +125,6 @@ footer {
     padding: 10px;
 }
 
-/* Modals */
 .modal {
     display: none;
     position: fixed;
@@ -176,7 +148,6 @@ footer {
     cursor: pointer;
 }
 
-/* Chat Bot */
 .chat-bot {
     position: fixed;
     bottom: 10px;
